@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Mail } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import logo from '../assets/logo.png';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -41,18 +42,15 @@ const Navbar = () => {
       )}
     >
       <div className="container-custom flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-2 group">
-           <div className={cn("w-10 h-10 rounded-lg flex items-center justify-center transition-all group-hover:rotate-12", isScrolled ? "bg-primary text-white" : "bg-accent text-white")}>
-              <span className="text-xl font-black">A</span>
-           </div>
-           <div className="flex flex-col md:flex-row md:items-baseline md:space-x-1">
-             <span className={cn("text-2xl font-black tracking-tight leading-none", (isScrolled) ? "text-primary" : "text-white drop-shadow-sm")}>
-                Angel
-             </span>
-             <span className={cn("text-lg font-bold tracking-tight opacity-70", (isScrolled) ? "text-primary/60" : "text-white/80")}>
-                Construction
-             </span>
-           </div>
+        <Link to="/" className="flex items-center group">
+           <img 
+             src={logo} 
+             alt="Angel Construction" 
+             className={cn(
+               "h-14 w-auto object-contain transition-all duration-300",
+               isScrolled ? "brightness-100 invert" : "brightness-125 hover:scale-105"
+             )} 
+           />
         </Link>
 
         {/* Desktop Menu */}

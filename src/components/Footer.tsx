@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Linkedin, ArrowUpRight } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -16,12 +17,7 @@ const Footer = () => {
           {/* Company Brief */}
           <div className="space-y-6">
             <Link to="/" className="flex flex-col group">
-              <span className="text-3xl font-black tracking-tighter leading-none group-hover:text-accent transition-colors duration-200">
-                ANGEL
-              </span>
-              <span className="text-sm font-bold tracking-widest text-accent">
-                CONSTRUCTION
-              </span>
+               <img src={logo} alt="Angel Construction" className="h-20 w-auto object-contain brightness-125" />
             </Link>
             <p className="text-slate-300 leading-relaxed max-w-sm">
               ANGEL Civil Construction is a professional construction company specializing in residential, commercial, and infrastructure projects.
