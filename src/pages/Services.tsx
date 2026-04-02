@@ -233,7 +233,7 @@ const Services = () => {
                  transition={{ delay: 0.1 }}
                  className="space-y-6"
                >
-                  <div className="icon-box-dark bg-accent text-white mx-auto w-20 h-20 shadow-gold hover-lift">
+                  <div className="icon-box-dark bg-accent text-white mx-auto w-20 h-20 shadow-orange hover-lift">
                      <Clock size={40} />
                   </div>
                   <h4 className="text-2xl font-heading font-black">Timely Delivery</h4>

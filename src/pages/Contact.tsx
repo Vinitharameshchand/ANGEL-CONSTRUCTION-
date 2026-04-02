@@ -196,7 +196,7 @@ const Contact = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="flex flex-col items-center justify-center py-20 text-center space-y-8"
                   >
-                    <div className="w-24 h-24 bg-accent/20 text-accent rounded-full flex items-center justify-center shadow-gold">
+                    <div className="w-24 h-24 bg-accent/20 text-accent rounded-full flex items-center justify-center shadow-orange">
                       <CheckCircle size={48} />
                     </div>
                     <div className="space-y-4">
@@ -272,7 +272,7 @@ const Contact = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full btn-primary py-6 text-base tracking-[0.3em] shadow-gold rounded-2xl flex items-center justify-center space-x-4 disabled:opacity-70 group hover:scale-[1.02] active:scale-[0.98] transition-transform"
+                      className="w-full btn-primary py-6 text-base tracking-[0.3em] shadow-orange rounded-2xl flex items-center justify-center space-x-4 disabled:opacity-70 group hover:scale-[1.02] active:scale-[0.98] transition-transform"
                     >
                       {isSubmitting ? (
                         <div className="w-6 h-6 border-2 border-white/20 border-t-white rounded-full animate-spin" />
@@ -318,7 +318,7 @@ const Contact = () => {
                  transition={{ duration: 1, delay: 0.5, ease: [0.33, 1, 0.68, 1] as any }}
                  className="bg-primary/95 backdrop-blur-md p-12 rounded-[2.5rem] text-white border border-white/10 shadow-3xl max-w-sm space-y-6"
                >
-                  <div className="icon-box-dark bg-accent text-white shadow-gold"><MapPin size={24} /></div>
+                  <div className="icon-box-dark bg-accent text-white shadow-orange"><MapPin size={24} /></div>
                   <h3 className="text-3xl font-heading font-black">Visit Us In <br /> <span className="text-accent text-display leading-none">CBE</span></h3>
                   <p className="text-white/60 font-light leading-relaxed">
                      No 37, Sir Shanmugam Rd, R.S. Puram, Coimbatore, Tamil Nadu 641002

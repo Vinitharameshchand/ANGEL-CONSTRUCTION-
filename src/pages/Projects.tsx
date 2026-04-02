@@ -89,7 +89,7 @@ const Projects = () => {
                     onClick={() => setFilter(cat)}
                     className={`px-8 py-3 rounded-2xl font-heading font-black transition-all border-2 text-xs uppercase tracking-widest active:scale-95 ${
                       filter === cat 
-                        ? 'bg-accent text-white border-accent shadow-gold scale-105' 
+                        ? 'bg-accent text-white border-accent shadow-orange scale-105' 
                         : 'bg-white text-muted border-transparent hover:border-accent/40 hover:text-accent'
                     }`}
                   >
@@ -103,7 +103,7 @@ const Projects = () => {
                 <input 
                   type="text" 
                   placeholder="Search project..." 
-                  className="bg-white py-4 pl-14 pr-8 rounded-[1.5rem] border border-border focus:border-accent focus:shadow-gold transition-all outline-none text-primary font-bold text-xs uppercase tracking-widest w-72"
+                  className="bg-white py-4 pl-14 pr-8 rounded-[1.5rem] border border-border focus:border-accent focus:shadow-orange transition-all outline-none text-primary font-bold text-xs uppercase tracking-widest w-72"
                 />
              </div>
           </div>
@@ -181,7 +181,7 @@ const Projects = () => {
                transition={{ delay: 0.1 }}
             >
                <Link to="/contact">
-                  <button className="btn-primary py-6 px-16 text-xl rounded-[1.5rem] shadow-gold hover:scale-105 active:scale-95 transition-transform">
+                  <button className="btn-primary py-6 px-16 text-xl rounded-[1.5rem] shadow-orange hover:scale-105 active:scale-95 transition-transform">
                      Start Your Journey Now
                   </button>
                </Link>
