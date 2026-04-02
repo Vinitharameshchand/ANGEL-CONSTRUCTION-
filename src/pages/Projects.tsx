@@ -1,10 +1,17 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Search, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Projects = () => {
   const [filter, setFilter] = useState('All');
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  const heroY = useTransform(scrollYProgress, [0, 0.2], [0, 150]);
 
   const categories = ['All', 'Residential', 'Commercial', 'Industrial', 'Interior'];
 
@@ -24,33 +31,45 @@ const Projects = () => {
     ? allProjects 
     : allProjects.filter(p => p.category === filter);
 
-  const fadeUp = {
-    initial: { opacity: 0, y: 30 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 1, ease: [0.33, 1, 0.68, 1] as any }
+  const revealVariants = {
+    hidden: { opacity: 0, y: 80 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 1.2, ease: [0.33, 1, 0.68, 1] as any }
+    }
   };
 
   return (
-    <div className="overflow-x-hidden pt-24 bg-white">
+    <div ref={containerRef} className="overflow-x-hidden pt-24 bg-white">
       {/* Page Hero */}
-      <section className="bg-primary text-white py-20 relative overflow-hidden">
-        <div className="absolute inset-0 z-0">
+      <section className="bg-primary text-white py-20 relative overflow-hidden h-[50vh] flex items-center">
+        <motion.div 
+          style={{ y: heroY }}
+          className="absolute inset-0 z-0"
+        >
            <img 
               src="https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=2000" 
               alt="Hera Style Projects" 
               className="w-full h-full object-cover opacity-20"
            />
            <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary to-primary" />
-        </div>
+        </motion.div>
         
         <div className="container-custom relative z-10 text-center max-w-4xl mx-auto py-16">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+            initial="hidden"
+            animate="visible"
+            variants={revealVariants}
           >
-            <span className="label-eyebrow text-accent-light justify-center mx-auto mb-6">Our Portfolio</span>
+            <motion.span 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="label-eyebrow text-accent-light justify-center mx-auto mb-6"
+            >
+              Our Portfolio
+            </motion.span>
             <h1 className="text-display text-white font-heading font-black mb-8 leading-tight">Masterpiece <br /> Gallery</h1>
             <p className="text-xl text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
               Showcasing our best residential buildings and commercial projects highlighting our expertise.
@@ -99,18 +118,18 @@ const Projects = () => {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
           >
             <AnimatePresence mode='popLayout'>
-              {filteredProjects.map((project) => (
+              {filteredProjects.map((project, idx) => (
                 <motion.div
                   key={project.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                  className="project-card h-[500px]"
+                  transition={{ duration: 0.8, delay: idx * 0.05, ease: [0.33, 1, 0.68, 1] as any }}
+                  className="project-card h-[500px] group overflow-hidden"
                 >
                   <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-                  <div className="absolute inset-0 img-overlay opacity-80 group-hover:opacity-100 transition-all duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/20 to-transparent opacity-80 group-hover:opacity-100 transition-all duration-500" />
                   
                   <div className="absolute inset-0 p-12 flex flex-col justify-end transform transition-all duration-700">
                      <span className="text-accent text-[10px] font-heading font-black uppercase tracking-[0.3em] mb-4 group-hover:translate-x-2 transition-transform">{project.category}</span>
@@ -145,12 +164,24 @@ const Projects = () => {
       {/* CTA Bottom Banner */}
       <section className="py-24 bg-primary text-white text-center relative overflow-hidden">
          <div className="container-custom relative z-10 space-y-12">
-            <motion.h2 {...fadeUp} className="text-4xl md:text-6xl font-heading font-black text-white leading-tight max-w-4xl mx-auto">
+            <motion.h2 
+               initial="hidden"
+               whileInView="visible"
+               viewport={{ once: true }}
+               variants={revealVariants}
+               className="text-4xl md:text-6xl font-heading font-black text-white leading-tight max-w-4xl mx-auto"
+            >
                Your Dream Home <br /> <span className="text-accent">Starts</span> Here
             </motion.h2>
-            <motion.div {...fadeUp} transition={{ delay: 0.1 }}>
+            <motion.div 
+               initial="hidden"
+               whileInView="visible"
+               viewport={{ once: true }}
+               variants={revealVariants}
+               transition={{ delay: 0.1 }}
+            >
                <Link to="/contact">
-                  <button className="btn-primary py-6 px-16 text-xl rounded-[1.5rem] shadow-gold">
+                  <button className="btn-primary py-6 px-16 text-xl rounded-[1.5rem] shadow-gold hover:scale-105 active:scale-95 transition-transform">
                      Start Your Journey Now
                   </button>
                </Link>

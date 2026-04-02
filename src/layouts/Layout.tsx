@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { MessageCircle, ArrowUp } from 'lucide-react';
+import { ReactLenis } from 'lenis/react';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -11,6 +12,13 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { pathname } = useLocation();
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -22,33 +30,38 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     document.title = `${pageTitle} | Angel Construction - Building Your Dreams`;
   }, [pathname]);
 
-  const [showScrollTop, setShowScrollTop] = React.useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen selection:bg-accent selection:text-white">
-      <Navbar />
-      <main className="flex-grow">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={pathname}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-          >
-            {children}
-          </motion.div>
-        </AnimatePresence>
-      </main>
-      <Footer />
+    <ReactLenis root>
+      <div className="flex flex-col min-h-screen selection:bg-accent selection:text-white">
+        <Navbar />
+        {/* Scroll Progress Bar */}
+        <motion.div 
+           className="fixed top-0 left-0 w-full h-[3px] bg-accent z-[100] origin-left"
+           style={{ scaleX }}
+        />
+        
+        <main className="flex-grow">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={pathname}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
+            >
+              {children}
+            </motion.div>
+          </AnimatePresence>
+        </main>
+        <Footer />
 
       {/* Floating Buttons */}
       <div className="fixed bottom-10 right-10 z-50 flex flex-col items-center space-y-6">
@@ -93,8 +106,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             className="h-full bg-accent"
             style={{ scaleX: 0 }} // This would normally use useScroll from framer-motion
          />
+        </div>
       </div>
-    </div>
+    </ReactLenis>
   );
 };
 
