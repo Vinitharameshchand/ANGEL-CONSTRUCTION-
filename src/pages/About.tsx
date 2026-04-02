@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { Target, Eye, ShieldCheck, Award, Users2, Clock, MapPin, Phone, CheckCircle2, Building2, HardHat, Compass } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Target, Eye, ShieldCheck, Award, Users2, Clock, CheckCircle2 } from 'lucide-react';
 
 const About = () => {
   const values = [
@@ -25,167 +26,169 @@ const About = () => {
     }
   ];
 
-  const milestones = [
-    { year: "2010", event: "Foundation of Angel Construction" },
-    { year: "2015", event: "Expansion to Commercial Projects" },
-    { year: "2018", event: "ISO 9001 Certification" },
-    { year: "2023", event: "150+ Projects Milestone" }
-  ];
+  const fadeUp = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.8, ease: "easeOut" as any }
+  };
 
   return (
-    <div className="pt-24 lg:pt-32 bg-white min-h-screen">
-      {/* Header */}
-      <section className="bg-primary text-white py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-accent/5 pointer-events-none scale-150 rotate-3 translate-x-1/2" />
-        <div className="container-custom relative z-10 text-center max-w-4xl mx-auto">
+    <div className="overflow-x-hidden pt-24 bg-white">
+      {/* Page Hero */}
+      <section className="bg-primary text-white py-20 relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+           <img 
+              src="https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=2000" 
+              alt="Hera Style About" 
+              className="w-full h-full object-cover opacity-20"
+           />
+           <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary to-primary" />
+        </div>
+        
+        <div className="container-custom relative z-10 text-center max-w-4xl mx-auto py-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
           >
-            <h1 className="text-6xl md:text-8xl font-black mb-8 leading-tight tracking-tighter">About Angel <br /> Construction</h1>
-            <p className="text-xl md:text-2xl text-slate-300 font-medium">Expert civil construction services for residential, commercial and interior projects since last 10+ years.</p>
+            <span className="label-eyebrow text-accent-light justify-center mx-auto mb-6">Our Legacy</span>
+            <h1 className="text-display text-white font-heading font-black mb-8 leading-tight">About Angel <br /> Construction</h1>
+            <p className="text-xl text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
+              We are a prominent construction firm with 8+ years of experience in Coimbatore, Tamil Nadu.
+            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Intro Section */}
-      <section className="section-padding overflow-hidden">
+      {/* Legacy Section - Split Layout */}
+      <section className="section-padding bg-white overflow-hidden">
         <div className="container-custom">
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="space-y-10"
-              >
-                 <div className="space-y-4">
-                    <span className="text-accent font-black uppercase tracking-[0.4em] text-xs">Our Legacy</span>
-                    <h2 className="text-5xl font-black text-primary leading-tight">Engineering Tomorrow's Excellence Today</h2>
+              <motion.div {...fadeUp} className="relative">
+                 <div className="absolute -top-10 -left-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
+                 <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-3xl">
+                    <img 
+                      src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200" 
+                      alt="Construction Legacy" 
+                      className="w-full h-[600px] object-cover" 
+                    />
                  </div>
-                 <div className="space-y-6 text-lg text-slate-600 leading-relaxed font-medium">
-                    <p>
-                       Angel Civil Construction is a professional construction company specializing in residential, commercial, and infrastructure projects. Our team of experienced engineers and architects is dedicated to delivering state-of-the-art infrastructure and interior design solutions.
-                    </p>
-                    <p>
-                       We prioritize client satisfaction through absolute transparency, highest quality material, and strict adherence to timelines. From foundational work to final finishing, every project receives meticulous attention to detail.
-                    </p>
-                 </div>
-                 <div className="flex flex-wrap gap-8 pt-4">
-                    <div className="flex items-center space-x-3">
-                       <CheckCircle2 className="text-accent" size={24} />
-                       <span className="font-black text-primary uppercase tracking-widest text-xs">Certified Quality</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                       <CheckCircle2 className="text-accent" size={24} />
-                       <span className="font-black text-primary uppercase tracking-widest text-xs">Expert Engineering</span>
-                    </div>
+                 <div className="absolute -bottom-10 -left-10 bg-accent p-12 rounded-[2rem] shadow-card-hover z-20">
+                    <span className="text-white text-5xl font-heading font-black mb-1 block">8+</span>
+                    <span className="text-white/80 uppercase tracking-widest text-[10px] font-bold">Years of Trust</span>
                  </div>
               </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                className="relative"
-              >
-                 <div className="absolute inset-0 bg-primary/5 rounded-[50px] rotate-3 scale-105" />
-                 <img src="https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=1200" alt="Construction Site" className="relative z-10 w-full h-[600px] object-cover rounded-[50px] shadow-2xl" />
+              <motion.div {...fadeUp} transition={{ delay: 0.2 }} className="space-y-8">
+                 <span className="label-eyebrow">Our Mission & Vision</span>
+                 <h2 className="section-title">Engineering Tomorrow's <br /> <span className="text-accent">Excellence</span> Today</h2>
+                 <div className="space-y-8 text-muted text-lg leading-relaxed font-light">
+                    <p>
+                       Angel Civil Construction is a professional construction company specializing in residential, commercial, and infrastructure projects. Our team is dedicated to delivering cutting-edge solutions with a focus on innovation and aesthetic designs.
+                    </p>
+                    <p>
+                       We take pride in transforming your dreams into architectural marvels that stand the test of time. Whether it's your dream home, an inspiring commercial space, or a captivating renovation, our expert team is eager to bring your vision to life.
+                    </p>
+                 </div>
                  
-                 {/* Floating badge */}
-                 <div className="absolute -bottom-10 -left-10 bg-accent text-white p-12 rounded-[30px] shadow-2xl z-20 group hover:rotate-3 transition-transform">
-                    <HardHat size={48} className="mb-4" />
-                    <h4 className="text-5xl font-black mb-1">15+</h4>
-                    <p className="text-sm font-black uppercase tracking-widest opacity-80">Years of Experience</p>
+                 <div className="flex flex-wrap gap-8 py-4">
+                    <div className="flex items-center space-x-3 group">
+                       <div className="icon-box w-10 h-10 group-hover:bg-accent group-hover:text-white"><CheckCircle2 size={16} /></div>
+                       <span className="font-heading font-bold text-primary uppercase tracking-widest text-xs">Innovation Focused</span>
+                    </div>
+                    <div className="flex items-center space-x-3 group">
+                       <div className="icon-box w-10 h-10 group-hover:bg-accent group-hover:text-white"><CheckCircle2 size={16} /></div>
+                       <span className="font-heading font-bold text-primary uppercase tracking-widest text-xs">Expert Engineering</span>
+                    </div>
                  </div>
               </motion.div>
            </div>
         </div>
       </section>
 
-      {/* Mission & Vision Section (Split Layout) */}
-      <section className="py-32 bg-slate-900 text-white relative overflow-hidden">
-         <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/20 -skew-x-12 translate-x-1/2" />
-         <div className="container-custom relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-32">
-               <motion.div
-                 initial={{ opacity: 0, y: 30 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true }}
-                 className="space-y-8 p-12 bg-white/5 rounded-[40px] border border-white/10 backdrop-blur-sm group hover:border-accent/40 transition-colors"
+      {/* Mission Vision Panels */}
+      <section className="section-padding bg-surface">
+         <div className="container-custom">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+               <motion.div 
+                 {...fadeUp}
+                 className="bg-white p-16 rounded-[3rem] shadow-card border border-border group hover:bg-primary transition-all duration-700"
                >
-                  <div className="w-20 h-20 bg-accent text-white rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform">
+                  <div className="w-20 h-20 bg-accent/10 text-accent rounded-2xl flex items-center justify-center mb-8 group-hover:bg-accent group-hover:text-white transition-all">
                      <Target size={40} />
                   </div>
-                  <h3 className="text-4xl font-black mb-4">Our Mission</h3>
-                  <p className="text-xl text-slate-300 leading-relaxed font-medium">To provide state-of-the-art infrastructure and interior design solutions at affordable prices while maintaining highest standards of quality and engineering integrity.</p>
+                  <h3 className="text-3xl font-heading font-black mb-6 group-hover:text-white transition-colors">Our Mission</h3>
+                  <p className="text-muted text-lg leading-relaxed font-light group-hover:text-white/60 transition-colors">
+                     To provide state-of-the-art infrastructure and interior design solutions at affordable prices while maintaining highest standards of quality and engineering integrity.
+                  </p>
                </motion.div>
 
-               <motion.div
-                 initial={{ opacity: 0, y: 30 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true }}
+               <motion.div 
+                 {...fadeUp}
                  transition={{ delay: 0.2 }}
-                 className="space-y-8 p-12 bg-white/5 rounded-[40px] border border-white/10 backdrop-blur-sm group hover:border-primary/40 transition-colors"
+                 className="bg-white p-16 rounded-[3rem] shadow-card border border-border group hover:bg-primary transition-all duration-700"
                >
-                  <div className="w-20 h-20 bg-primary text-white rounded-2xl flex items-center justify-center group-hover:-rotate-12 transition-transform">
+                  <div className="w-20 h-20 bg-accent/10 text-accent rounded-2xl flex items-center justify-center mb-8 group-hover:bg-accent group-hover:text-white transition-all">
                      <Eye size={40} />
                   </div>
-                  <h3 className="text-4xl font-black mb-4">Our Vision</h3>
-                  <p className="text-xl text-slate-300 leading-relaxed font-medium">To be the most valued construction and design firm in the region by consistently building landmarks that transform the way people live and work.</p>
+                  <h3 className="text-3xl font-heading font-black mb-6 group-hover:text-white transition-colors">Our Vision</h3>
+                  <p className="text-muted text-lg leading-relaxed font-light group-hover:text-white/60 transition-colors">
+                     To be the most valued construction and design firm in the region by consistently building landmarks that transform the way people live and work.
+                  </p>
                </motion.div>
             </div>
          </div>
       </section>
 
-      {/* Core Values Section */}
-      <section className="section-padding bg-slate-50">
+      {/* Core Values */}
+      <section className="section-padding bg-white">
          <div className="container-custom">
             <div className="text-center mb-20 space-y-4">
-               <span className="text-accent font-black uppercase tracking-[0.4em] text-xs">Our Principles</span>
-               <h2 className="text-5xl font-black text-primary">Fundamental Values</h2>
+               <motion.span {...fadeUp} className="label-eyebrow justify-center mx-auto">Core Principles</motion.span>
+               <motion.h2 {...fadeUp} transition={{ delay: 0.1 }} className="section-title">Fundamental <span className="text-accent">Values</span></motion.h2>
             </div>
+            
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                {values.map((v, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
+                    {...fadeUp}
                     transition={{ delay: i * 0.1 }}
-                    className="bg-white p-12 rounded-[40px] text-center shadow-xl shadow-slate-200 hover:shadow-primary/10 transition-all transform hover:-translate-y-2 group h-full"
+                    className="service-card text-center flex flex-col items-center"
                   >
-                     <div className="w-16 h-16 bg-slate-50 text-accent rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                     <div className="w-16 h-16 bg-surface text-accent rounded-2xl flex items-center justify-center mb-8 group-hover:bg-accent group-hover:text-white transition-all duration-300">
                         {v.icon}
                      </div>
-                     <h4 className="text-2xl font-black text-primary mb-4 leading-none">{v.title}</h4>
-                     <p className="text-slate-500 font-medium leading-relaxed">{v.description}</p>
+                     <h4 className="text-xl font-heading font-black mb-4 leading-none">{v.title}</h4>
+                     <p className="text-muted font-light leading-relaxed text-sm">{v.description}</p>
                   </motion.div>
                ))}
             </div>
          </div>
       </section>
 
-      {/* Team/Quick Contact */}
-      <section className="py-24 bg-white relative overflow-hidden">
-         <div className="container-custom">
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-12 bg-primary p-16 rounded-[50px] shadow-2xl relative overflow-hidden">
-               <div className="absolute inset-0 bg-accent/5 pointer-events-none" />
+      {/* Final CTA */}
+      <section className="py-24 bg-primary text-white relative overflow-hidden">
+         <div className="container-custom relative z-10">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-12 bg-white/5 p-16 rounded-[4rem] backdrop-blur-md border border-white/10 shadow-2xl overflow-hidden group">
+               <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                <div className="relative z-10 max-w-2xl text-center lg:text-left space-y-4">
-                  <h2 className="text-4xl font-black text-white">Partner with the Civil Experts</h2>
-                  <p className="text-slate-300 text-xl font-medium">Discuss your vision with our senior engineering team today.</p>
+                  <h2 className="text-4xl font-heading font-black tracking-tight"><span className="text-accent">Partner</span> with the Experts</h2>
+                  <p className="text-white/60 text-lg font-light">Discuss your next masterpiece with our senior engineering team today.</p>
                </div>
-               <div className="relative z-10 flex flex-col md:flex-row gap-8 shrink-0">
-                  <div className="flex items-center space-x-5 bg-white/5 p-8 rounded-3xl backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all">
-                     <div className="p-4 bg-accent text-white rounded-2xl">
-                        <Phone size={28} />
-                     </div>
-                     <div>
-                        <p className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em] mb-1">Direct Call</p>
-                        <p className="text-2xl font-black text-white">+91 93600 21210</p>
-                     </div>
-                  </div>
+               <div className="relative z-10 shrink-0">
+                  <Link to="/contact">
+                    <button className="btn-primary py-5 px-12 text-base rounded-[1.5rem]">
+                       Consult Today
+                    </button>
+                  </Link>
                </div>
             </div>
+         </div>
+         
+         <div className="absolute top-0 right-0 p-8 text-white/5 pointer-events-none select-none">
+            <span className="text-[10rem] font-heading font-black leading-none uppercase">Dream</span>
          </div>
       </section>
     </div>

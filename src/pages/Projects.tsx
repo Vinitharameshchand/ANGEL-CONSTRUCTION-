@@ -1,61 +1,77 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Search, Filter } from 'lucide-react';
+import { Search, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Projects = () => {
   const [filter, setFilter] = useState('All');
 
-  const categories = ['All', 'Residential', 'Commercial', 'Infrastructure', 'Interior'];
+  const categories = ['All', 'Residential', 'Commercial', 'Industrial', 'Interior'];
 
   const allProjects = [
-    { id: 1, title: "Modern Luxury Villa", category: "Residential", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800", description: "Modern residential villa with smart automation." },
-    { id: 2, title: "Grand IT Complex", category: "Commercial", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800", description: "State-of-the-art corporate workspace in Coimbatore." },
-    { id: 3, title: "Urban Highway Bridge", category: "Infrastructure", image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=800", description: "Robust civil infrastructure for heavy urban traffic." },
-    { id: 4, title: "Luxury Penthouse", category: "Residential", image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&q=80&w=800", description: "High-end residential interior and finishing." },
-    { id: 5, title: "Shopping Mall Hub", category: "Commercial", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800", description: "Comprehensive structural work for commercial mall." },
-    { id: 6, title: "Modern Living Space", category: "Interior", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800", description: "Minimalist interior design for a modern home." },
-    { id: 7, title: "Industrial Warehouse", category: "Infrastructure", image: "https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=800", description: "Functional and scalable civil infrastructure." },
-    { id: 8, title: "Boutique Hotel", category: "Commercial", image: "https://images.unsplash.com/photo-1445013541984-d33e42524410?auto=format&fit=crop&q=80&w=800", description: "Elegant hospitality construction and interior." },
-    { id: 9, title: "Sustainable Home", category: "Residential", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800", description: "Eco-friendly residential construction methods." }
+    { id: 1, title: "Luxury Villa in Goundampalayam", category: "Residential", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800", description: "Hera residence style luxury villa with top-quality craftsmanship." },
+    { id: 2, title: "Modern Hub Coimbatore", category: "Commercial", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800", description: "Impressive commercial spaces crafted by experienced specialists." },
+    { id: 3, title: "Infrastructure Development", category: "Industrial", image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=800", description: "Architectural marvels building industrial excellence across Tamil Nadu." },
+    { id: 4, title: "Luxury Villa in Erode", category: "Residential", image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&q=80&w=800", description: "Your trusted destination for building your dream home." },
+    { id: 5, title: "Shopping Mall Hub", category: "Commercial", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800", description: "Innovative and functional designs for commercial spaces." },
+    { id: 6, title: "Interior for Hera Residence", category: "Interior", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800", description: "Transforming your dreams into architectural marvels." },
+    { id: 7, title: "Industrial Warehouse Park", category: "Industrial", image: "https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=800", description: "Redefining excellence in the Field of building and design." },
+    { id: 8, title: "California Young Menz Club", category: "Commercial", image: "https://images.unsplash.com/photo-1445013541984-d33e42524410?auto=format&fit=crop&q=80&w=800", description: "Building commercial projects that leave a lasting impression." },
+    { id: 9, title: "Ready to Buy Luxury Villa", category: "Residential", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800", description: "Personalized and thoughtful designs that transform your vision." }
   ];
 
   const filteredProjects = filter === 'All' 
     ? allProjects 
     : allProjects.filter(p => p.category === filter);
 
+  const fadeUp = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 1, ease: [0.33, 1, 0.68, 1] as any }
+  };
+
   return (
-    <div className="pt-24 lg:pt-32 bg-slate-50 min-h-screen">
-      {/* Page Header */}
+    <div className="overflow-x-hidden pt-24 bg-white">
+      {/* Page Hero */}
       <section className="bg-primary text-white py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-accent/10 opacity-20 pointer-events-none scale-150 rotate-3 translate-y-1/2" />
-        <div className="container-custom relative z-10 text-center max-w-4xl mx-auto">
+        <div className="absolute inset-0 z-0">
+           <img 
+              src="https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=2000" 
+              alt="Hera Style Projects" 
+              className="w-full h-full object-cover opacity-20"
+           />
+           <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary to-primary" />
+        </div>
+        
+        <div className="container-custom relative z-10 text-center max-w-4xl mx-auto py-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
           >
-            <h1 className="text-5xl md:text-7xl font-black mb-8 leading-tight">Our Portfolio</h1>
-            <p className="text-xl text-slate-300 font-medium">Explore our successfully completed milestones across various categories.</p>
+            <span className="label-eyebrow text-accent-light justify-center mx-auto mb-6">Our Portfolio</span>
+            <h1 className="text-display text-white font-heading font-black mb-8 leading-tight">Masterpiece <br /> Gallery</h1>
+            <p className="text-xl text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
+              Showcasing our best residential buildings and commercial projects highlighting our expertise.
+            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Filter Section */}
-      <section className="py-12 bg-white sticky top-20 z-30 shadow-sm border-b border-slate-100">
+      {/* Filter Tabs Section */}
+      <section className="py-12 bg-surface sticky top-20 z-30 shadow-sm border-b border-border">
         <div className="container-custom">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 font-sans">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
              <div className="flex flex-wrap justify-center items-center gap-4">
-                <div className="flex items-center space-x-2 text-primary/40 mr-4 hidden sm:flex">
-                   <Filter size={20} />
-                   <span className="text-xs uppercase font-black tracking-widest">Filter by</span>
-                </div>
                 {categories.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setFilter(cat)}
-                    className={`px-8 py-3 rounded-xl font-black transition-all border-2 text-sm uppercase tracking-widest active:scale-95 ${
+                    className={`px-8 py-3 rounded-2xl font-heading font-black transition-all border-2 text-xs uppercase tracking-widest active:scale-95 ${
                       filter === cat 
-                        ? 'bg-primary text-white border-primary shadow-xl shadow-primary/20 scale-105' 
-                        : 'bg-slate-50 text-slate-400 border-transparent hover:bg-slate-200 hover:text-primary'
+                        ? 'bg-accent text-white border-accent shadow-gold scale-105' 
+                        : 'bg-white text-muted border-transparent hover:border-accent/40 hover:text-accent'
                     }`}
                   >
                     {cat}
@@ -64,19 +80,19 @@ const Projects = () => {
              </div>
              
              <div className="relative group hidden lg:block">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-hover:text-primary transition-colors" size={20} />
+                <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-muted group-hover:text-accent transition-colors" size={16} />
                 <input 
                   type="text" 
                   placeholder="Search project..." 
-                  className="bg-slate-100 py-3 pl-12 pr-6 rounded-xl border border-transparent focus:border-primary focus:bg-white transition-all outline-none text-primary font-bold w-64"
+                  className="bg-white py-4 pl-14 pr-8 rounded-[1.5rem] border border-border focus:border-accent focus:shadow-gold transition-all outline-none text-primary font-bold text-xs uppercase tracking-widest w-72"
                 />
              </div>
           </div>
         </div>
       </section>
 
-      {/* Projects Grid */}
-      <section className="section-padding min-h-[600px]">
+      {/* Projects Grid Section */}
+      <section className="section-padding bg-white min-h-[600px]">
         <div className="container-custom">
           <motion.div 
             layout
@@ -87,31 +103,26 @@ const Projects = () => {
                 <motion.div
                   key={project.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4 }}
-                  className="group relative h-[450px] overflow-hidden rounded-[40px] shadow-lg border-4 border-white h-full"
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="project-card h-[500px]"
                 >
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/40 to-transparent opacity-60 group-hover:opacity-100 transition-all duration-300" />
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                  <div className="absolute inset-0 img-overlay opacity-80 group-hover:opacity-100 transition-all duration-500" />
                   
-                  <div className="absolute inset-0 p-10 flex flex-col justify-end transform transition-all duration-500 group-hover:translate-y-[-20px]">
-                     <div className="overflow-hidden mb-4">
-                        <span className="inline-block bg-accent text-white text-[10px] font-black py-1 px-3 rounded-full uppercase tracking-[0.2em] transform translate-y-10 group-hover:translate-y-0 transition-transform duration-300">
-                          {project.category}
-                        </span>
-                     </div>
-                     <h3 className="text-3xl font-black text-white mb-4 drop-shadow-lg">{project.title}</h3>
-                     <p className="text-slate-200 text-sm font-medium leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 max-h-0 group-hover:max-h-20 overflow-hidden transform translate-y-10 group-hover:translate-y-0">
+                  <div className="absolute inset-0 p-12 flex flex-col justify-end transform transition-all duration-700">
+                     <span className="text-accent text-[10px] font-heading font-black uppercase tracking-[0.3em] mb-4 group-hover:translate-x-2 transition-transform">{project.category}</span>
+                     <h3 className="text-3xl font-heading font-black text-white mb-6 leading-tight group-hover:translate-x-2 transition-transform delay-75">{project.title}</h3>
+                     <p className="text-white/60 text-sm font-light leading-relaxed max-h-0 group-hover:max-h-24 opacity-0 group-hover:opacity-100 overflow-hidden transition-all duration-700 mb-8 transform translate-y-4 group-hover:translate-y-0">
                         {project.description}
                      </p>
                      
-                     <div className="pt-8 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-10 group-hover:translate-y-0">
-                        <button className="bg-white text-primary hover:bg-accent hover:text-white font-black p-4 rounded-2xl flex items-center space-x-3 shadow-2xl transition-all scale-90 group-hover:scale-100 active:scale-95">
-                           <span className="text-sm uppercase tracking-widest">Case Study</span>
-                           <ExternalLink size={20} />
-                        </button>
+                     <div className="opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-y-4 group-hover:translate-y-0 delay-150">
+                        <Link to={`/contact`} className="btn-primary py-4 px-8 text-[11px] rounded-xl flex items-center gap-4 w-fit">
+                           Know More <ArrowRight size={14} />
+                        </Link>
                      </div>
                   </div>
                 </motion.div>
@@ -120,20 +131,33 @@ const Projects = () => {
           </motion.div>
           
           {filteredProjects.length === 0 && (
-            <div className="text-center py-20">
-               <div className="text-9xl text-slate-200 font-black mb-8 opacity-50 overflow-hidden">404</div>
-               <h3 className="text-3xl font-black text-primary mb-4">No projects found in this category</h3>
-               <p className="text-slate-500 font-medium">Try another filter or check back later for updates.</p>
+            <div className="text-center py-32 space-y-8">
+               <div className="text-[12rem] text-surface font-heading font-black leading-none opacity-20">404</div>
+               <div className="space-y-4">
+                  <h3 className="text-3xl font-heading font-black text-primary">No results found</h3>
+                  <p className="text-muted text-lg font-light">Try another filter or check back later for updates.</p>
+               </div>
             </div>
           )}
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-accent py-20 relative">
-         <div className="container-custom relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
-            <h2 className="text-4xl md:text-5xl font-black text-white md:max-w-xl text-center md:text-left leading-tight">Got a similar vision for your next project?</h2>
-            <button className="bg-primary text-white hover:bg-slate-800 font-black py-6 px-16 rounded-2xl text-xl shadow-2xl transition-all transform hover:-translate-y-2 active:scale-95">Discuss Your Vision</button>
+      {/* CTA Bottom Banner */}
+      <section className="py-24 bg-primary text-white text-center relative overflow-hidden">
+         <div className="container-custom relative z-10 space-y-12">
+            <motion.h2 {...fadeUp} className="text-4xl md:text-6xl font-heading font-black text-white leading-tight max-w-4xl mx-auto">
+               Your Dream Home <br /> <span className="text-accent">Starts</span> Here
+            </motion.h2>
+            <motion.div {...fadeUp} transition={{ delay: 0.1 }}>
+               <Link to="/contact">
+                  <button className="btn-primary py-6 px-16 text-xl rounded-[1.5rem] shadow-gold">
+                     Start Your Journey Now
+                  </button>
+               </Link>
+            </motion.div>
+         </div>
+         <div className="absolute top-0 right-0 p-8 text-white/5 pointer-events-none select-none">
+            <span className="text-[10rem] font-heading font-black leading-none uppercase">Dream</span>
          </div>
       </section>
     </div>
