@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
 import logo from '../assets/logo.png';
@@ -39,13 +39,12 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
             ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-border py-3'
             : isHeroPage
-            ? 'bg-transparent py-5'
-            : 'bg-white border-b border-border py-4'
-        }`}
+              ? 'bg-transparent py-5'
+              : 'bg-white border-b border-border py-4'
+          }`}
       >
         {/* Top info bar – visible only on large screens when not scrolled */}
         {!isScrolled && isHeroPage && (
@@ -67,9 +66,8 @@ const Navbar = () => {
             <img
               src={logo}
               alt="Angel Construction"
-              className={`h-11 w-auto object-contain transition-all duration-350 ${
-                isScrolled || !isHeroPage ? '' : 'brightness-[2] contrast-125'
-              }`}
+              className={`h-11 w-auto object-contain transition-all duration-350 ${isScrolled || !isHeroPage ? '' : 'brightness-[2] contrast-125'
+                }`}
             />
           </Link>
 
@@ -81,12 +79,10 @@ const Navbar = () => {
                 to={link.path}
                 end={link.path === '/'}
                 className={({ isActive }) =>
-                  `nav-link text-[11px] ${
-                    isActive ? 'text-accent active' : ''
-                  } ${
-                    !isScrolled && isHeroPage
-                      ? isActive ? 'text-accent' : 'text-white/90 hover:text-white'
-                      : isActive ? 'text-accent' : 'text-muted hover:text-primary'
+                  `nav-link text-[11px] ${isActive ? 'text-accent active' : ''
+                  } ${!isScrolled && isHeroPage
+                    ? isActive ? 'text-accent' : 'text-white/90 hover:text-white'
+                    : isActive ? 'text-accent' : 'text-muted hover:text-primary'
                   }`
                 }
               >
@@ -105,11 +101,10 @@ const Navbar = () => {
           <button
             onClick={toggleMenu}
             aria-label="Toggle menu"
-            className={`lg:hidden p-2.5 rounded-xl border transition-all duration-200 ${
-              isScrolled || !isHeroPage
+            className={`lg:hidden p-2.5 rounded-xl border transition-all duration-200 ${isScrolled || !isHeroPage
                 ? 'border-border text-primary hover:bg-surface'
                 : 'border-white/20 text-white hover:bg-white/10'
-            }`}
+              }`}
           >
             {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -118,9 +113,8 @@ const Navbar = () => {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-40 lg:hidden transition-all duration-500 ${
-          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
+        className={`fixed inset-0 z-40 lg:hidden transition-all duration-500 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          }`}
       >
         {/* Backdrop */}
         <div
@@ -130,9 +124,8 @@ const Navbar = () => {
 
         {/* Panel */}
         <div
-          className={`absolute top-0 right-0 h-full w-[340px] max-w-full bg-white shadow-2xl transition-transform duration-500 ease-out flex flex-col ${
-            isOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
+          className={`absolute top-0 right-0 h-full w-[340px] max-w-full bg-white shadow-2xl transition-transform duration-500 ease-out flex flex-col ${isOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
         >
           {/* Panel Header */}
           <div className="flex items-center justify-between px-8 pt-6 pb-4 border-b border-border">
@@ -156,10 +149,9 @@ const Navbar = () => {
                 style={{ transitionDelay: `${idx * 50}ms` }}
                 className={({ isActive }) =>
                   `flex items-center justify-between px-4 py-4 rounded-xl font-heading font-semibold
-                   text-base tracking-wide transition-all duration-200 ${
-                    isActive
-                      ? 'bg-accent text-white'
-                      : 'text-primary hover:bg-surface hover:text-accent'
+                   text-base tracking-wide transition-all duration-200 ${isActive
+                    ? 'bg-accent text-white'
+                    : 'text-primary hover:bg-surface hover:text-accent'
                   }`
                 }
               >

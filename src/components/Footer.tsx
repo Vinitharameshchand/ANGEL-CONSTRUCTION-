@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone as PhoneIcon, Mail as MailIcon, MapPin as MapPinIcon, Facebook as FacebookIcon, Instagram as InstagramIcon, Twitter as TwitterIcon, Linkedin as LinkedinIcon, ArrowUpRight as ArrowUpRightIcon } from 'lucide-react';
 import logo from '../assets/logo.png';
@@ -35,8 +34,8 @@ const Footer = () => {
             <ul className="space-y-4">
               {['Home', 'About', 'Services', 'Projects', 'Contact'].map((item) => (
                 <li key={item}>
-                  <Link 
-                    to={item === 'Home' ? '/' : `/${item.toLowerCase()}`} 
+                  <Link
+                    to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
                     className="text-white/60 hover:text-accent transition-all duration-300 flex items-center gap-2 group"
                   >
                     <ArrowUpRightIcon size={14} className="opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
@@ -55,8 +54,8 @@ const Footer = () => {
             <ul className="space-y-4">
               {['Residential Building', 'Commercial Space', 'Interior Designing', 'Civil Infrastructure'].map((item) => (
                 <li key={item}>
-                  <Link 
-                    to="/services" 
+                  <Link
+                    to="/services"
                     className="text-white/60 hover:text-accent transition-all duration-300 block"
                   >
                     {item}
@@ -104,7 +103,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Visual Accent */}
       <div className="absolute top-0 right-0 p-8 text-white/5 pointer-events-none select-none">
         <span className="text-[12rem] font-heading font-black leading-none uppercase">Angel</span>
