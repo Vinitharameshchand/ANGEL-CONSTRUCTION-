@@ -4,12 +4,16 @@ import { Link } from 'react-router-dom';
 import { Target, Eye, ShieldCheck, Award, Users2, Clock, CheckCircle2 } from 'lucide-react';
 
 const About = () => {
+  // Reference to the main wrapper div, used to track scroll position
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Hook from Framer Motion to get the scroll progress of the container (0 to 1)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
+  // Map the scroll progress to a vertical pixel value (0px to 150px) for a subtle parallax effect on the hero image
   const heroY = useTransform(scrollYProgress, [0, 0.2], [0, 150]);
 
   const values = [
@@ -35,6 +39,7 @@ const About = () => {
     }
   ];
 
+  // Define animation states for elements that slide up and fade in
   const revealVariants = {
     hidden: { opacity: 0, y: 80 },
     visible: { 
@@ -44,6 +49,7 @@ const About = () => {
     }
   };
 
+  // Define animation states for images that scale down and fade in for a premium look
   const imageReveal = {
     hidden: { scale: 1.2, opacity: 0 },
     visible: { 

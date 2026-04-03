@@ -1,12 +1,13 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { 
-  ArrowRight, 
-  Home as HomeIcon, 
-  Sofa, 
-  Users, 
-  Clock, 
-  ShieldCheck, 
+import heroBg from '../assets/images/frontpagebgimg.png';
+import {
+  ArrowRight,
+  Home as HomeIcon,
+  Sofa,
+  Users,
+  Clock,
+  ShieldCheck,
   HardHat,
   MapPin,
   Phone,
@@ -99,8 +100,8 @@ const Home = () => {
 
   const revealVariants = {
     hidden: { opacity: 0, y: 100 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: { duration: 1.2, ease: [0.33, 1, 0.68, 1] as any }
     }
@@ -108,8 +109,8 @@ const Home = () => {
 
   const imageReveal = {
     hidden: { scale: 1.2, filter: "blur(10px)", opacity: 0 },
-    visible: { 
-      scale: 1, 
+    visible: {
+      scale: 1,
       filter: "blur(0px)",
       opacity: 1,
       transition: { duration: 1.5, ease: [0.33, 1, 0.68, 1] as any }
@@ -120,25 +121,25 @@ const Home = () => {
     <div ref={containerRef} className="overflow-x-hidden font-sans">
       {/* 1. Hero Section */}
       <section className="relative h-screen flex items-center bg-primary overflow-hidden">
-        <motion.div 
+        <motion.div
           className="absolute inset-0 z-0"
           style={{ y: heroY, scale: heroScale }}
         >
-          <img 
-            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=2000" 
-            alt="Premium Construction" 
+          <img
+            src={heroBg}
+            alt="Premium Construction"
             className="w-full h-full object-cover opacity-50"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/60 to-transparent" />
         </motion.div>
-        
+
         <div className="container-custom relative z-10">
           <motion.div
             initial="hidden"
             animate="visible"
             className="max-w-4xl"
           >
-            <motion.span 
+            <motion.span
               variants={{
                 hidden: { opacity: 0, x: -20 },
                 visible: { opacity: 1, x: 0, transition: { duration: 0.8 } }
@@ -147,23 +148,23 @@ const Home = () => {
             >
               Building Excellence Since 2010
             </motion.span>
-            
-            <motion.h1 
+
+            <motion.h1
               variants={revealVariants}
               className="text-display text-white font-heading font-black mb-8"
             >
               Building Your <span className="text-accent underline decoration-accent/20 underline-offset-8">Vision</span> <br /> Into Reality
             </motion.h1>
-            
-            <motion.p 
+
+            <motion.p
               variants={revealVariants}
               transition={{ delay: 0.1 }}
               className="text-xl md:text-2xl text-white/80 mb-12 leading-relaxed font-light max-w-2xl"
             >
               Angel Construction. We are glad to be unite with you in deal of construction. Expert civil services for every milestone.
             </motion.p>
-            
-            <motion.div 
+
+            <motion.div
               variants={revealVariants}
               transition={{ delay: 0.2 }}
               className="flex flex-wrap gap-6"
@@ -181,8 +182,8 @@ const Home = () => {
             </motion.div>
           </motion.div>
         </div>
-        
-        <motion.div 
+
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
@@ -198,7 +199,7 @@ const Home = () => {
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="relative group">
-              <motion.div 
+              <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
@@ -206,33 +207,33 @@ const Home = () => {
                 className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl"
               >
                 {/* Reveal Mask Overlay */}
-                <motion.div 
+                <motion.div
                   initial={{ x: "0%" }}
                   whileInView={{ x: "100%" }}
                   transition={{ duration: 1, ease: [0.33, 1, 0.68, 1], delay: 0.2 }}
                   viewport={{ once: true }}
                   className="absolute inset-0 bg-accent z-20"
                 />
-                <img 
-                  src="https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=1200" 
-                  alt="About Angel Construction" 
-                  className="w-full h-[600px] object-cover" 
+                <img
+                  src="https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=1200"
+                  alt="About Angel Construction"
+                  className="w-full h-[600px] object-cover"
                 />
               </motion.div>
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: 0.8 }}
                 className="absolute -bottom-10 -right-10 bg-primary p-12 rounded-[2rem] shadow-2xl hidden md:block z-30"
               >
-                 <div className="text-accent text-5xl font-heading font-black mb-2">15+</div>
-                 <div className="text-white/60 uppercase tracking-widest text-[10px] font-bold">Years Experience</div>
+                <div className="text-accent text-5xl font-heading font-black mb-2">15+</div>
+                <div className="text-white/60 uppercase tracking-widest text-[10px] font-bold">Years Experience</div>
               </motion.div>
             </div>
 
             <div className="space-y-8">
-              <motion.span 
+              <motion.span
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -240,8 +241,8 @@ const Home = () => {
               >
                 Builders of Excellence
               </motion.span>
-              
-              <motion.h2 
+
+              <motion.h2
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
@@ -250,8 +251,8 @@ const Home = () => {
               >
                 Beyond Construction, <br /> We Build <span className="text-accent">Trust</span>
               </motion.h2>
-              
-              <motion.div 
+
+              <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
@@ -266,8 +267,8 @@ const Home = () => {
                   Our team of young, talented minds is dedicated to delivering cutting-edge solutions with a focus on innovation and aesthetic design. We value your dream and work tirelessly to make it a reality within your budget.
                 </p>
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
@@ -276,21 +277,21 @@ const Home = () => {
                 className="grid grid-cols-2 gap-8 py-6"
               >
                 <div className="space-y-2">
-                   <h4 className="text-3xl font-heading font-black text-primary">3000+</h4>
-                   <p className="text-sm font-bold text-muted uppercase tracking-widest">Project Completed</p>
+                  <h4 className="text-3xl font-heading font-black text-primary">3000+</h4>
+                  <p className="text-sm font-bold text-muted uppercase tracking-widest">Project Completed</p>
                 </div>
                 <div className="space-y-2">
-                   <h4 className="text-3xl font-heading font-black text-primary">220+</h4>
-                   <p className="text-sm font-bold text-muted uppercase tracking-widest">Happy Clients</p>
+                  <h4 className="text-3xl font-heading font-black text-primary">220+</h4>
+                  <p className="text-sm font-bold text-muted uppercase tracking-widest">Happy Clients</p>
                 </div>
               </motion.div>
-              
+
               <motion.div
-                 initial="hidden"
-                 whileInView="visible"
-                 viewport={{ once: true }}
-                 variants={revealVariants}
-                 transition={{ delay: 0.3 }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={revealVariants}
+                transition={{ delay: 0.3 }}
               >
                 <Link to="/about" className="inline-block pt-4">
                   <button className="btn-outline flex items-center gap-4">
@@ -307,7 +308,7 @@ const Home = () => {
       <section className="section-padding bg-surface">
         <div className="container-custom">
           <div className="text-center max-w-3xl mx-auto mb-20 space-y-6">
-            <motion.span 
+            <motion.span
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -315,7 +316,7 @@ const Home = () => {
             >
               What We Offer
             </motion.span>
-            <motion.h2 
+            <motion.h2
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -325,7 +326,7 @@ const Home = () => {
               Comprehensive Expert <span className="text-accent">Services</span>
             </motion.h2>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {services.map((service, idx) => (
               <motion.div
@@ -360,29 +361,29 @@ const Home = () => {
         <div className="container-custom">
           <div className="flex flex-col md:flex-row items-end justify-between mb-20 gap-8">
             <div className="max-w-2xl space-y-6">
-               <motion.span 
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  className="label-eyebrow"
-               >
-                  Our Masterpieces
-               </motion.span>
-               <motion.h2 
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={revealVariants}
-                  className="section-title"
-               >
-                  Showcasing Our Best <span className="text-accent">Works</span>
-               </motion.h2>
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="label-eyebrow"
+              >
+                Our Masterpieces
+              </motion.span>
+              <motion.h2
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={revealVariants}
+                className="section-title"
+              >
+                Showcasing Our Best <span className="text-accent">Works</span>
+              </motion.h2>
             </div>
-            <motion.div 
-               initial={{ opacity: 0 }}
-               whileInView={{ opacity: 1 }}
-               viewport={{ once: true }}
-               transition={{ delay: 0.4 }}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
             >
               <Link to="/projects">
                 <button className="btn-outline">View All Projects</button>
@@ -400,24 +401,24 @@ const Home = () => {
                 transition={{ duration: 1, delay: idx * 0.1, ease: [0.33, 1, 0.68, 1] }}
                 className="project-card h-[450px] group overflow-hidden"
               >
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
                 <div className="absolute inset-0 p-10 flex flex-col justify-end">
-                   <motion.span 
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      className="text-accent text-[10px] font-bold uppercase tracking-[0.2em] mb-2"
-                   >
-                      {project.category}
-                   </motion.span>
-                   <h3 className="text-2xl font-heading font-black text-white mb-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{project.title}</h3>
-                   <div className="opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0 duration-500">
-                      <Link to="/projects" className="btn-primary py-3 px-6 text-[10px] items-center">Know More</Link>
-                   </div>
+                  <motion.span
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    className="text-accent text-[10px] font-bold uppercase tracking-[0.2em] mb-2"
+                  >
+                    {project.category}
+                  </motion.span>
+                  <h3 className="text-2xl font-heading font-black text-white mb-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{project.title}</h3>
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0 duration-500">
+                    <Link to="/projects" className="btn-primary py-3 px-6 text-[10px] items-center">Know More</Link>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -430,78 +431,78 @@ const Home = () => {
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="space-y-10">
-               <div className="space-y-6">
-                  <motion.span 
-                    initial={{ opacity: 0, x: -20 }}
+              <div className="space-y-6">
+                <motion.span
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="label-eyebrow text-accent-light"
+                >
+                  Why Choose Us
+                </motion.span>
+                <motion.h2
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={revealVariants}
+                  className="section-title text-white"
+                >
+                  We Value Your <span className="text-accent">Dreams</span>
+                </motion.h2>
+              </div>
+              <div className="grid grid-cols-1 gap-6">
+                {whyChooseUs.map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="label-eyebrow text-accent-light"
+                    transition={{ delay: idx * 0.1, duration: 1 }}
+                    className="flex gap-6 group"
                   >
-                    Why Choose Us
-                  </motion.span>
-                  <motion.h2 
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={revealVariants}
-                    className="section-title text-white"
-                  >
-                    We Value Your <span className="text-accent">Dreams</span>
-                  </motion.h2>
-               </div>
-               <div className="grid grid-cols-1 gap-6">
-                  {whyChooseUs.map((item, idx) => (
-                    <motion.div 
-                      key={idx} 
-                      initial={{ opacity: 0, x: -30 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.1, duration: 1 }}
-                      className="flex gap-6 group"
-                    >
-                       <div className="icon-box-dark group-hover:bg-accent transition-colors">
-                          {item.icon}
-                       </div>
-                       <div>
-                          <h4 className="text-xl font-heading font-bold mb-2">{item.title}</h4>
-                          <p className="text-white/60 font-light leading-relaxed">{item.description}</p>
-                       </div>
-                    </motion.div>
-                  ))}
-               </div>
+                    <div className="icon-box-dark group-hover:bg-accent transition-colors">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-heading font-bold mb-2">{item.title}</h4>
+                      <p className="text-white/60 font-light leading-relaxed">{item.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-            
+
             <div className="relative">
-              <motion.div 
+              <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={imageReveal}
                 className="rounded-[40px] overflow-hidden border-8 border-white/5 relative"
               >
-                <motion.div 
+                <motion.div
                   initial={{ x: "0%" }}
                   whileInView={{ x: "-100%" }}
                   transition={{ duration: 1.2, ease: [0.33, 1, 0.68, 1], delay: 0.2 }}
                   viewport={{ once: true }}
                   className="absolute inset-0 bg-accent z-20"
                 />
-                <img 
-                  src="https://images.unsplash.com/photo-1503387762-592dee58c460?auto=format&fit=crop&q=80&w=1200" 
-                  alt="Construction Quality" 
-                  className="w-full h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-1000" 
+                <img
+                  src="https://images.unsplash.com/photo-1503387762-592dee58c460?auto=format&fit=crop&q=80&w=1200"
+                  alt="Construction Quality"
+                  className="w-full h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                 />
               </motion.div>
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 1, type: "spring" }}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-accent rounded-full flex items-center justify-center animate-pulse cursor-pointer z-30"
               >
-                 <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center pl-1 shadow-2xl">
-                    <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[18px] border-l-primary border-b-[10px] border-b-transparent" />
-                 </div>
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center pl-1 shadow-2xl">
+                  <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[18px] border-l-primary border-b-[10px] border-b-transparent" />
+                </div>
               </motion.div>
             </div>
           </div>
@@ -512,14 +513,14 @@ const Home = () => {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="text-center max-w-3xl mx-auto mb-20 space-y-6">
-            <motion.span 
+            <motion.span
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               className="label-eyebrow justify-center mx-auto"
             >
               Client Success
             </motion.span>
-            <motion.h2 
+            <motion.h2
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -545,13 +546,13 @@ const Home = () => {
                   {t.quote}
                 </p>
                 <div className="pt-8 border-t border-border flex items-center gap-4">
-                   <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center text-accent font-black uppercase">
-                      {t.name.charAt(0)}
-                   </div>
-                   <div>
-                      <h4 className="font-heading font-bold text-primary">{t.name}</h4>
-                      <p className="text-xs text-muted font-bold uppercase tracking-widest">{t.role}</p>
-                   </div>
+                  <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center text-accent font-black uppercase">
+                    {t.name.charAt(0)}
+                  </div>
+                  <div>
+                    <h4 className="font-heading font-bold text-primary">{t.name}</h4>
+                    <p className="text-xs text-muted font-bold uppercase tracking-widest">{t.role}</p>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -562,49 +563,49 @@ const Home = () => {
       {/* 7. Call-to-Action Section */}
       <section className="py-32 bg-accent relative overflow-hidden group">
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <motion.div 
-             initial={{ opacity: 0, scale: 1.2 }}
-             whileInView={{ opacity: 0.1, scale: 1 }}
-             viewport={{ once: true }}
-             transition={{ duration: 2 }}
-             className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center grayscale"
+          <motion.div
+            initial={{ opacity: 0, scale: 1.2 }}
+            whileInView={{ opacity: 0.1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 2 }}
+            className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center grayscale"
           />
         </div>
         <div className="container-custom relative z-10">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-12 text-center lg:text-left">
-             <div className="max-w-2xl space-y-6">
-                <motion.h2 
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={revealVariants}
-                  className="text-4xl md:text-6xl font-heading font-black text-white leading-tight text-balance"
-                >
-                  Let’s Build Something <span className="text-primary">Great</span> Together
-                </motion.h2>
-                <motion.p 
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={revealVariants}
-                  transition={{ delay: 0.1 }}
-                  className="text-white/80 text-xl font-light"
-                >
-                  Ready to transform your vision into an architectural masterpiece? Our experts are standing by.
-                </motion.p>
-             </div>
-             <motion.div 
-               initial={{ opacity: 0, scale: 0.9 }}
-               whileInView={{ opacity: 1, scale: 1 }}
-               viewport={{ once: true }}
-               transition={{ delay: 0.3, duration: 1 }}
-             >
-               <Link to="/contact">
-                 <button className="btn-dark py-6 px-16 text-xl rounded-[1.5rem] shadow-2xl hover:scale-105 transition-transform active:scale-95">
-                    Contact Us Now
-                 </button>
-               </Link>
-             </motion.div>
+            <div className="max-w-2xl space-y-6">
+              <motion.h2
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={revealVariants}
+                className="text-4xl md:text-6xl font-heading font-black text-white leading-tight text-balance"
+              >
+                Let’s Build Something <span className="text-primary">Great</span> Together
+              </motion.h2>
+              <motion.p
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={revealVariants}
+                transition={{ delay: 0.1 }}
+                className="text-white/80 text-xl font-light"
+              >
+                Ready to transform your vision into an architectural masterpiece? Our experts are standing by.
+              </motion.p>
+            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 1 }}
+            >
+              <Link to="/contact">
+                <button className="btn-dark py-6 px-16 text-xl rounded-[1.5rem] shadow-2xl hover:scale-105 transition-transform active:scale-95">
+                  Contact Us Now
+                </button>
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -613,72 +614,72 @@ const Home = () => {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
-             <div className="space-y-8">
-                <motion.h3 
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  className="text-3xl font-heading font-black flex items-center gap-4"
-                >
-                  <span className="w-12 h-px bg-accent" /> Contact Info
-                </motion.h3>
-                <div className="space-y-8 px-4">
-                   {[
-                     { icon: <Phone size={20} />, label: "Call Us Anywhere", val: "+91 93600 21210" },
-                     { icon: <Mail size={20} />, label: "Email Us Directly", val: "arunpradishyr09@gmail.com" },
-                     { icon: <MapPin size={20} />, label: "Our Studio Location", val: "Gandhipuram, Coimbatore - 641012" }
-                   ].map((item, i) => (
-                     <motion.div 
-                        key={i} 
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: i * 0.1, duration: 0.8 }}
-                        className="flex gap-6 group cursor-default"
-                     >
-                        <div className="text-accent shrink-0 group-hover:scale-125 transition-transform duration-300">{item.icon}</div>
-                        <div>
-                           <p className="text-[10px] font-bold text-muted uppercase tracking-widest mb-1">{item.label}</p>
-                           <p className="text-lg font-bold text-primary group-hover:text-accent transition-colors">{item.val}</p>
-                        </div>
-                     </motion.div>
-                   ))}
-                </div>
-                
-                <div className="flex gap-4 pt-4 px-4 overflow-hidden">
-                   {[Instagram, Facebook, Twitter, Linkedin].map((Icon, i) => (
-                     <motion.div 
-                        key={i} 
-                        initial={{ y: 50, opacity: 0 }}
-                        whileInView={{ y: 0, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.4 + (i * 0.1) }}
-                        className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-primary/40 hover:bg-accent hover:border-accent hover:text-white transition-all cursor-pointer"
-                     >
-                        <Icon size={20} />
-                     </motion.div>
-                   ))}
-                </div>
-             </div>
-
-             <motion.div 
-                initial="hidden"
-                whileInView="visible"
+            <div className="space-y-8">
+              <motion.h3
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                variants={imageReveal}
-                className="lg:col-span-2 relative"
-             >
-                <div className="h-[500px] rounded-[3rem] overflow-hidden border border-border grayscale hover:grayscale-0 transition-all duration-1000 shadow-xl">
-                  <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.1852445851494!2d76.96191631480295!3d11.01201459216174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859ab951d8baf%3A0xbc4e24efdce2789d!2sGandhipuram%2C%20Coimbatore%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1625573432123!5m2!1sen!2sin" 
-                    width="100%" 
-                    height="100%" 
-                    style={{ border: 0 }} 
-                    allowFullScreen={true}
-                    loading="lazy"
-                  />
-                </div>
-             </motion.div>
+                className="text-3xl font-heading font-black flex items-center gap-4"
+              >
+                <span className="w-12 h-px bg-accent" /> Contact Info
+              </motion.h3>
+              <div className="space-y-8 px-4">
+                {[
+                  { icon: <Phone size={20} />, label: "Call Us Anywhere", val: "+91 93600 21210" },
+                  { icon: <Mail size={20} />, label: "Email Us Directly", val: "arunpradishyr09@gmail.com" },
+                  { icon: <MapPin size={20} />, label: "Our Studio Location", val: "Gandhipuram, Coimbatore - 641012" }
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, duration: 0.8 }}
+                    className="flex gap-6 group cursor-default"
+                  >
+                    <div className="text-accent shrink-0 group-hover:scale-125 transition-transform duration-300">{item.icon}</div>
+                    <div>
+                      <p className="text-[10px] font-bold text-muted uppercase tracking-widest mb-1">{item.label}</p>
+                      <p className="text-lg font-bold text-primary group-hover:text-accent transition-colors">{item.val}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="flex gap-4 pt-4 px-4 overflow-hidden">
+                {[Instagram, Facebook, Twitter, Linkedin].map((Icon, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ y: 50, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4 + (i * 0.1) }}
+                    className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-primary/40 hover:bg-accent hover:border-accent hover:text-white transition-all cursor-pointer"
+                  >
+                    <Icon size={20} />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={imageReveal}
+              className="lg:col-span-2 relative"
+            >
+              <div className="h-[500px] rounded-[3rem] overflow-hidden border border-border grayscale hover:grayscale-0 transition-all duration-1000 shadow-xl">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.1852445851494!2d76.96191631480295!3d11.01201459216174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859ab951d8baf%3A0xbc4e24efdce2789d!2sGandhipuram%2C%20Coimbatore%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1625573432123!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                />
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

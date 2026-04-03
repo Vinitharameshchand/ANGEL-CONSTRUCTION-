@@ -4,12 +4,16 @@ import { Home, Building2, Sofa, Ruler, ShieldCheck, Hammer, ArrowRight, CheckCir
 import { Link } from 'react-router-dom';
 
 const Services = () => {
+  // Reference to track component for scroll animations
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Hook from Framer Motion that tracks how far we have scrolled relative to the container
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
+  // Calculate parallax offset for the main hero image (0px to 150px movement based on scroll progress)
   const heroY = useTransform(scrollYProgress, [0, 0.2], [0, 150]);
 
   const allServices = [
@@ -47,6 +51,7 @@ const Services = () => {
     }
   ];
 
+  // Common animation variants used to stagger load elements cleanly upwards
   const revealVariants = {
     hidden: { opacity: 0, y: 80 },
     visible: { 
@@ -56,6 +61,7 @@ const Services = () => {
     }
   };
 
+  // Common animation applied to block images (zooming down and fading in) for a smooth aesthetic effect
   const imageReveal = {
     hidden: { scale: 1.2, opacity: 0 },
     visible: { 
