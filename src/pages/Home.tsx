@@ -193,13 +193,23 @@ const Home = () => {
         </div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 1 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
         >
-          <span className="text-white/40 text-[10px] uppercase tracking-[0.3em] font-heading font-bold">Scroll</span>
-          <div className="w-px h-16 bg-gradient-to-b from-accent to-transparent" />
+          <motion.span 
+            animate={{ y: [0, 5, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            className="text-white/40 text-[10px] uppercase tracking-[0.3em] font-heading font-bold"
+          >
+            Scroll
+          </motion.span>
+          <motion.div 
+            animate={{ scaleY: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            className="w-px h-16 origin-top bg-gradient-to-b from-accent to-transparent" 
+          />
         </motion.div>
       </section>
 
@@ -284,18 +294,35 @@ const Home = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                variants={revealVariants}
-                transition={{ delay: 0.2 }}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.2, delayChildren: 0.3 }
+                  }
+                }}
                 className="grid grid-cols-2 gap-8 py-6"
               >
-                <div className="space-y-2">
-                  <h4 className="text-3xl font-heading font-black text-primary">3000+</h4>
+                <motion.div variants={revealVariants} className="space-y-2">
+                  <motion.h4 
+                    className="text-4xl md:text-5xl font-heading font-black text-primary"
+                    whileHover={{ scale: 1.05, color: '#C9A84C' }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    3000+
+                  </motion.h4>
                   <p className="text-sm font-bold text-muted uppercase tracking-widest">Project Completed</p>
-                </div>
-                <div className="space-y-2">
-                  <h4 className="text-3xl font-heading font-black text-primary">220+</h4>
+                </motion.div>
+                <motion.div variants={revealVariants} className="space-y-2">
+                  <motion.h4 
+                    className="text-4xl md:text-5xl font-heading font-black text-primary"
+                    whileHover={{ scale: 1.05, color: '#C9A84C' }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    220+
+                  </motion.h4>
                   <p className="text-sm font-bold text-muted uppercase tracking-widest">Happy Clients</p>
-                </div>
+                </motion.div>
               </motion.div>
 
               <motion.div
@@ -391,16 +418,22 @@ const Home = () => {
                 Showcasing Our Best <span className="text-accent">Works</span>
               </motion.h2>
             </div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-            >
-              <Link to="/projects">
-                <button className="btn-outline">View All Projects</button>
-              </Link>
-            </motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              >
+                <Link to="/projects">
+                  <motion.button 
+                    whileHover={{ x: 10, scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="btn-outline flex items-center gap-3 group"
+                  >
+                    View All Projects <LucideIcons.ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+                  </motion.button>
+                </Link>
+              </motion.div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -472,12 +505,12 @@ const Home = () => {
                     transition={{ delay: idx * 0.1, duration: 1 }}
                     className="flex gap-6 group"
                   >
-                    <div className="icon-box-dark group-hover:bg-accent transition-colors">
+                    <div className="icon-box-dark group-hover:bg-accent transition-colors shrink-0">
                       <DynamicIcon name={item.iconName} size={32} />
                     </div>
-                    <div>
-                      <h4 className="text-xl font-heading font-bold mb-2">{item.title}</h4>
-                      <p className="text-white/60 font-light leading-relaxed">{item.description}</p>
+                    <div className="pt-2">
+                      <h4 className="text-xl font-heading font-bold mb-2 text-white">{item.title}</h4>
+                      <p className="text-white/60 text-sm md:text-base font-light leading-relaxed">{item.description}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -505,17 +538,26 @@ const Home = () => {
                   className="w-full h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                 />
               </motion.div>
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 1, type: "spring" }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-accent rounded-full flex items-center justify-center animate-pulse cursor-pointer z-30"
-              >
-                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center pl-1 shadow-2xl">
-                  <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[18px] border-l-primary border-b-[10px] border-b-transparent" />
-                </div>
-              </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 1, type: "spring", bounce: 0.5 }}
+                >
+                  <motion.div
+                    animate={{ y: [0, -15, 0] }}
+                    transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 md:w-40 md:h-40 bg-accent/90 backdrop-blur-sm rounded-full flex items-center justify-center cursor-pointer z-30 shadow-[0_0_50px_rgba(201,168,76,0.4)]"
+                  >
+                    <motion.div 
+                      animate={{ scale: [1, 1.1, 1] }}
+                      transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                      className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center pl-1 shadow-2xl"
+                    >
+                      <div className="w-0 h-0 border-t-[8px] md:border-t-[10px] border-t-transparent border-l-[14px] md:border-l-[18px] border-l-primary border-b-[8px] md:border-b-[10px] border-b-transparent" />
+                    </motion.div>
+                  </motion.div>
+                </motion.div>
             </div>
           </div>
         </div>

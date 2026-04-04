@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { MessageCircle, ArrowUp } from 'lucide-react';
 import { ReactLenis } from 'lenis/react';
+import CustomCursor from '../components/CustomCursor';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -40,7 +41,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <ReactLenis root>
-      <div className="flex flex-col min-h-screen selection:bg-accent selection:text-white">
+      <div className="flex flex-col min-h-screen selection:bg-accent selection:text-white lg:cursor-none">
+        <CustomCursor />
         <Navbar />
         {/* Scroll Progress Bar */}
         <motion.div 
