@@ -1,7 +1,27 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useScroll, useTransform, useInView, useMotionValue, animate } from 'framer-motion';
+import { useRef, useEffect } from 'react';
 import { Home, Building2, Sofa, Ruler, ShieldCheck, Hammer, ArrowRight, CheckCircle2, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import TextReveal from '../components/TextReveal';
+
+// Animated Counter Component
+const AnimatedCounter = ({ value, duration = 2 }: { value: number, duration?: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest: number) => Math.round(latest));
+
+  useEffect(() => {
+    if (isInView) {
+      animate(count, value, {
+        duration: duration,
+        ease: "easeOut",
+      });
+    }
+  }, [isInView, count, value, duration]);
+
+  return <motion.span ref={ref}>{rounded}</motion.span>;
+};
 
 const Services = () => {
   // Reference to track component for scroll animations
@@ -101,7 +121,9 @@ const Services = () => {
             >
               Expert Solutions
             </motion.span>
-            <h1 className="text-display text-white font-heading font-black mb-8 leading-tight">Our Expert <br /> Services</h1>
+            <h1 className="text-display text-white font-heading font-black mb-8 leading-tight">
+              <TextReveal text="Our Expert Services" highlightWords={["Services"]} />
+            </h1>
             <p className="text-xl text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
               Delivering innovation, aesthetics, and reliability across Tamil Nadu for over 8 years.
             </p>
@@ -153,16 +175,17 @@ const Services = () => {
 
                 <div className="lg:w-1/2 space-y-10">
                   <div className="space-y-6">
-                     <motion.div 
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={revealVariants}
-                        className="flex items-center gap-6"
-                     >
-                        <span className="text-display text-accent/10 font-heading font-black leading-none">0{index + 1}</span>
-                        <h2 className="text-4xl md:text-5xl font-heading font-black text-primary leading-tight tracking-tight">{service.title}</h2>
-                     </motion.div>
+                      <motion.div 
+                         initial="hidden"
+                         whileInView="visible"
+                         viewport={{ once: true }}
+                         className="flex items-center gap-6"
+                      >
+                         <span className="text-display text-accent/10 font-heading font-black leading-none">0<AnimatedCounter value={index + 1} /></span>
+                         <h2 className="text-4xl md:text-5xl font-heading font-black text-primary leading-tight tracking-tight">
+                           <TextReveal text={service.title} />
+                         </h2>
+                      </motion.div>
                      <motion.p 
                         initial="hidden"
                         whileInView="visible"
@@ -270,10 +293,9 @@ const Services = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              variants={revealVariants}
               className="text-4xl md:text-6xl font-heading font-black text-primary leading-tight text-balance max-w-4xl mx-auto"
             >
-               Ready To Build Your <span className="text-white">Dream</span> Home With Us?
+              <TextReveal text="Ready To Build Your Dream Home With Us?" highlightWords={["Dream"]} />
             </motion.h2>
             <motion.div 
               initial="hidden"

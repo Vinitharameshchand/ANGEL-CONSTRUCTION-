@@ -3,6 +3,7 @@ import { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Target, Eye, ShieldCheck, Award, Users2, Clock, CheckCircle2 } from 'lucide-react';
 import vm from "../assets/images/mission&vision.png";
+import TextReveal from '../components/TextReveal';
 
 // Animated Counter Component
 const AnimatedCounter = ({ value, duration = 2 }: { value: number, duration?: number }) => {
@@ -109,7 +110,9 @@ const About = () => {
             >
               Our Legacy
             </motion.span>
-            <h1 className="text-display text-white font-heading font-black mb-8 leading-tight">About Angel <br /> Construction</h1>
+            <h1 className="text-display text-white font-heading font-black mb-8 leading-tight">
+              <TextReveal text="About Angel Construction" />
+            </h1>
             <p className="text-xl text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
               We are a prominent construction firm with <AnimatedCounter value={8} />+ years of experience in Coimbatore, Tamil Nadu.
             </p>
@@ -169,10 +172,12 @@ const About = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                variants={revealVariants}
                 className="section-title"
               >
-                Engineering Tomorrow's <br /> <span className="text-accent">Excellence</span> Today
+                <TextReveal 
+                  text="Engineering Tomorrow's Excellence Today" 
+                  highlightWords={["Excellence"]} 
+                />
               </motion.h2>
 
               <motion.div
@@ -269,10 +274,9 @@ const About = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              variants={revealVariants}
               className="section-title"
             >
-              Fundamental <span className="text-accent">Values</span>
+              <TextReveal text="Fundamental Values" highlightWords={["Values"]} />
             </motion.h2>
           </div>
 

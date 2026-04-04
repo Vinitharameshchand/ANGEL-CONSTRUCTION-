@@ -6,6 +6,12 @@ import qualityVd from '../assets/images/Constructionqulity .mp4';
 import * as LucideIcons from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { sanityClient, urlFor } from '../lib/sanity';
+import proj1 from '../assets/images/projectimage/image.png';
+import proj2 from '../assets/images/projectimage/image copy.png';
+import proj3 from '../assets/images/projectimage/image copy 2.png';
+import proj4 from '../assets/images/projectimage/image copy 3.png';
+import proj5 from '../assets/images/projectimage/image copy 4.png';
+import proj6 from '../assets/images/projectimage/image copy 5.png';
 
 // Animated Counter Component
 const AnimatedCounter = ({ value, duration = 2 }: { value: number, duration?: number }) => {
@@ -61,12 +67,12 @@ const Home = () => {
   ]);
 
   const [projects, setProjects] = useState<any[]>([
-    { title: "Modern Luxury Villa", category: "Residential", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800" },
-    { title: "Corporate IT Park", category: "Commercial", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800" },
-    { title: "Dream Home", category: "Residential", image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&q=80&w=800" },
-    { title: "Commercial Plaza", category: "Commercial", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800" },
-    { title: "Minimalist Interior", category: "Interior", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800" },
-    { title: "Industrial Infrastructure", category: "Industrial", image: "https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=800" }
+    { title: "Modern Luxury Villa", category: "Residential", image: proj1 },
+    { title: "Corporate IT Park", category: "Commercial", image: proj2 },
+    { title: "Dream Home", category: "Residential", image: proj3 },
+    { title: "Commercial Plaza", category: "Commercial", image: proj4 },
+    { title: "Aesthetic Interior", category: "Interior", image: proj5 },
+    { title: "Industrial Infrastructure", category: "Industrial", image: proj6 }
   ]);
 
   const whyChooseUs = [
@@ -508,17 +514,11 @@ const Home = () => {
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
-                <div className="absolute inset-0 p-10 flex flex-col justify-end">
-                  <motion.span
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    className="text-accent text-[10px] font-bold uppercase tracking-[0.2em] mb-2"
-                  >
-                    {project.category}
-                  </motion.span>
-                  <h3 className="text-2xl font-heading font-black text-white mb-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{project.title}</h3>
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0 duration-500">
-                    <Link to="/projects" className="btn-primary py-3 px-6 text-[10px] items-center">Know More</Link>
+                <div className="absolute inset-0 p-10 flex flex-col justify-end items-center">
+                  <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                    <Link to="/projects" className="btn-primary py-4 px-10 text-[12px] rounded-xl flex items-center gap-4 w-fit shadow-2xl">
+                      Know More <LucideIcons.ArrowRight size={16} />
+                    </Link>
                   </div>
                 </div>
               </motion.div>

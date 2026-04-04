@@ -2,6 +2,26 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Search, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import TextReveal from '../components/TextReveal';
+import proj1 from '../assets/images/projectimage/image.png';
+import proj2 from '../assets/images/projectimage/image copy.png';
+import proj3 from '../assets/images/projectimage/image copy 2.png';
+import proj4 from '../assets/images/projectimage/image copy 3.png';
+import proj5 from '../assets/images/projectimage/image copy 4.png';
+import proj6 from '../assets/images/projectimage/image copy 5.png';
+import proj7 from '../assets/images/projectimage/image copy 6.png';
+import proj8 from '../assets/images/projectimage/image copy 7.png';
+import proj9 from '../assets/images/projectimage/image copy 8.png';
+import proj10 from '../assets/images/projectimage/image copy 9.png';
+import proj11 from '../assets/images/projectimage/image copy 10.png';
+import proj12 from '../assets/images/projectimage/image copy 11.png';
+import proj13 from '../assets/images/projectimage/image copy 12.png';
+import proj14 from '../assets/images/projectimage/image copy 13.png';
+import proj15 from '../assets/images/projectimage/image copy 14.png';
+import proj16 from '../assets/images/projectimage/image copy 15.png';
+import proj17 from '../assets/images/projectimage/image copy 16.png';
+import proj18 from '../assets/images/projectimage/image copy 17.png';
+import proj19 from '../assets/images/projectimage/image copy 18.png';
 
 const Projects = () => {
   const [filter, setFilter] = useState('All');
@@ -13,18 +33,28 @@ const Projects = () => {
 
   const heroY = useTransform(scrollYProgress, [0, 0.2], [0, 150]);
 
-  const categories = ['All', 'Residential', 'Commercial', 'Industrial', 'Interior'];
+  const categories = ['All', 'Residential', 'Commercial', 'Industrial'];
 
   const allProjects = [
-    { id: 1, title: "Luxury Villa in Goundampalayam", category: "Residential", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800", description: "Hera residence style luxury villa with top-quality craftsmanship." },
-    { id: 2, title: "Modern Hub Coimbatore", category: "Commercial", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800", description: "Impressive commercial spaces crafted by experienced specialists." },
-    { id: 3, title: "Infrastructure Development", category: "Industrial", image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=800", description: "Architectural marvels building industrial excellence across Tamil Nadu." },
-    { id: 4, title: "Luxury Villa in Erode", category: "Residential", image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&q=80&w=800", description: "Your trusted destination for building your dream home." },
-    { id: 5, title: "Shopping Mall Hub", category: "Commercial", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800", description: "Innovative and functional designs for commercial spaces." },
-    { id: 6, title: "Interior for Hera Residence", category: "Interior", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800", description: "Transforming your dreams into architectural marvels." },
-    { id: 7, title: "Industrial Warehouse Park", category: "Industrial", image: "https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=800", description: "Redefining excellence in the Field of building and design." },
-    { id: 8, title: "California Young Menz Club", category: "Commercial", image: "https://images.unsplash.com/photo-1445013541984-d33e42524410?auto=format&fit=crop&q=80&w=800", description: "Building commercial projects that leave a lasting impression." },
-    { id: 9, title: "Ready to Buy Luxury Villa", category: "Residential", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800", description: "Personalized and thoughtful designs that transform your vision." }
+    { id: 1, title: "Modern Luxury Home", category: "Residential", image: proj1 },
+    { id: 2, title: "Contemporary Residence", category: "Residential", image: proj2 },
+    { id: 3, title: "Architectural Villa", category: "Residential", image: proj3 },
+    { id: 4, title: "Premium Living Space", category: "Residential", image: proj4 },
+    { id: 5, title: "Commercial Hub", category: "Commercial", image: proj5 },
+    { id: 6, title: "Office Infrastructure", category: "Commercial", image: proj6 },
+    { id: 7, title: "Industrial Development", category: "Industrial", image: proj7 },
+    { id: 8, title: "Urban Living Project", category: "Residential", image: proj8 },
+    { id: 9, title: "Luxury Estate", category: "Residential", image: proj9 },
+    { id: 10, title: "Corporate Complex", category: "Commercial", image: proj10 },
+    { id: 11, title: "Modern Apartment", category: "Residential", image: proj11 },
+    { id: 12, title: "Industrial Plant", category: "Industrial", image: proj12 },
+    { id: 13, title: "Retail Space", category: "Commercial", image: proj13 },
+    { id: 14, title: "Residential Milestone", category: "Residential", image: proj14 },
+    { id: 15, title: "Design Excellence", category: "Residential", image: proj15 },
+    { id: 16, title: "Future Building", category: "Commercial", image: proj16 },
+    { id: 17, title: "Landmark Project", category: "Industrial", image: proj17 },
+    { id: 18, title: "Aesthetic Design", category: "Residential", image: proj18 },
+    { id: 19, title: "Angel Landmark", category: "Residential", image: proj19 }
   ];
 
   const filteredProjects = filter === 'All' 
@@ -70,7 +100,9 @@ const Projects = () => {
             >
               Our Portfolio
             </motion.span>
-            <h1 className="text-display text-white font-heading font-black mb-8 leading-tight">Masterpiece <br /> Gallery</h1>
+            <h1 className="text-display text-white font-heading font-black mb-8 leading-tight">
+              <TextReveal text="Masterpiece Gallery" highlightWords={["Gallery"]} />
+            </h1>
             <p className="text-xl text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
               Showcasing our best residential buildings and commercial projects highlighting our expertise.
             </p>
@@ -131,16 +163,10 @@ const Projects = () => {
                   <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/20 to-transparent opacity-80 group-hover:opacity-100 transition-all duration-500" />
                   
-                  <div className="absolute inset-0 p-12 flex flex-col justify-end transform transition-all duration-700">
-                     <span className="text-accent text-[10px] font-heading font-black uppercase tracking-[0.3em] mb-4 group-hover:translate-x-2 transition-transform">{project.category}</span>
-                     <h3 className="text-3xl font-heading font-black text-white mb-6 leading-tight group-hover:translate-x-2 transition-transform delay-75">{project.title}</h3>
-                     <p className="text-white/60 text-sm font-light leading-relaxed max-h-0 group-hover:max-h-24 opacity-0 group-hover:opacity-100 overflow-hidden transition-all duration-700 mb-8 transform translate-y-4 group-hover:translate-y-0">
-                        {project.description}
-                     </p>
-                     
+                  <div className="absolute inset-0 p-12 flex flex-col justify-end items-center transform transition-all duration-700">
                      <div className="opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-y-4 group-hover:translate-y-0 delay-150">
-                        <Link to={`/contact`} className="btn-primary py-4 px-8 text-[11px] rounded-xl flex items-center gap-4 w-fit">
-                           Know More <ArrowRight size={14} />
+                        <Link to={`/contact`} className="btn-primary py-4 px-10 text-[12px] rounded-xl flex items-center gap-4 w-fit shadow-2xl">
+                           Know More <ArrowRight size={16} />
                         </Link>
                      </div>
                   </div>
@@ -168,10 +194,9 @@ const Projects = () => {
                initial="hidden"
                whileInView="visible"
                viewport={{ once: true }}
-               variants={revealVariants}
                className="text-4xl md:text-6xl font-heading font-black text-white leading-tight max-w-4xl mx-auto"
             >
-               Your Dream Home <br /> <span className="text-accent">Starts</span> Here
+               <TextReveal text="Your Dream Home Starts Here" highlightWords={["Starts"]} />
             </motion.h2>
             <motion.div 
                initial="hidden"
