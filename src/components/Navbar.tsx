@@ -38,36 +38,36 @@ const Navbar = () => {
 
   return (
     <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-border py-3'
-            : isHeroPage
-              ? 'bg-transparent py-5'
-              : 'bg-white border-b border-border py-4'
-          }`}
-      >
-        {/* Top info bar – visible only on large screens when not scrolled */}
-        {!isScrolled && isHeroPage && (
-          <div className="hidden 2xl:block absolute top-0 right-0 left-0 bg-primary/80 backdrop-blur-sm text-white/60 text-[11px] font-sans tracking-wider py-1.5 px-8">
-            <div className="max-w-7xl mx-auto flex justify-end items-center gap-6">
-              <a href="tel:+919360021210" className="flex items-center gap-2 hover:text-accent transition-colors">
-                <Phone size={12} />
-                <span>+91 93600 21210</span>
-              </a>
-              <span className="text-white/20">|</span>
-              <span>Mon – Sat: 9:00 AM – 7:00 PM</span>
-            </div>
+      {/* Top info bar */}
+      <div className={`fixed top-0 left-0 right-0 z-[40] transition-all duration-500 ${!isScrolled && isHeroPage ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full'}`}>
+        <div className="hidden lg:block w-full bg-primary text-white/60 text-[11px] font-sans tracking-wider py-2 px-8 shadow-md">
+          <div className="max-w-7xl mx-auto flex justify-end items-center gap-6">
+            <a href="tel:+919360021210" className="flex items-center gap-2 hover:text-accent transition-colors">
+              <Phone size={12} />
+              <span>+91 93600 21210</span>
+            </a>
+            <span className="text-white/20">|</span>
+            <span>Mon – Sat: 9:00 AM – 7:00 PM</span>
           </div>
-        )}
+        </div>
+      </div>
 
-        <div className="container-custom flex items-center justify-between">
+      <nav
+        className={`fixed left-4 right-4 lg:left-1/2 lg:-translate-x-1/2 lg:w-full lg:max-w-6xl z-50 transition-all duration-500 rounded-[3rem] border border-white/10 ${
+          isScrolled
+            ? 'top-4 bg-primary/70 backdrop-blur-xl shadow-2xl py-3'
+            : isHeroPage
+              ? 'top-6 lg:top-12 bg-primary/40 backdrop-blur-md shadow-lg py-4'
+              : 'top-6 bg-primary/80 backdrop-blur-xl shadow-2xl py-4'
+        }`}
+      >
+        <div className="px-6 lg:px-10 flex items-center justify-between w-full h-full">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group shrink-0">
             <img
               src={logo}
               alt="Angel Construction"
-              className={`h-11 w-auto object-contain transition-all duration-350 ${isScrolled || !isHeroPage ? '' : 'brightness-[2] contrast-125'
-                }`}
+              className="h-10 w-auto object-contain transition-all duration-350 brightness-[2] contrast-125"
             />
           </Link>
 
@@ -79,10 +79,8 @@ const Navbar = () => {
                 to={link.path}
                 end={link.path === '/'}
                 className={({ isActive }) =>
-                  `nav-link text-[11px] ${isActive ? 'text-accent active' : ''
-                  } ${!isScrolled && isHeroPage
-                    ? isActive ? 'text-accent' : 'text-white/90 hover:text-white'
-                    : isActive ? 'text-accent' : 'text-muted hover:text-primary'
+                  `nav-link font-sans text-[11px] font-bold tracking-[0.15em] uppercase transition-colors ${
+                    isActive ? 'text-accent' : 'text-white/80 hover:text-white'
                   }`
                 }
               >
@@ -91,7 +89,7 @@ const Navbar = () => {
             ))}
 
             <Link to="/contact">
-              <button className="btn-primary text-[11px] py-3 px-6">
+              <button className="btn-primary text-[11px] py-3 px-8 rounded-full shadow-lg">
                 Get a Quote
               </button>
             </Link>
@@ -101,10 +99,7 @@ const Navbar = () => {
           <button
             onClick={toggleMenu}
             aria-label="Toggle menu"
-            className={`lg:hidden p-2.5 rounded-xl border transition-all duration-200 ${isScrolled || !isHeroPage
-                ? 'border-border text-primary hover:bg-surface'
-                : 'border-white/20 text-white hover:bg-white/10'
-              }`}
+            className="lg:hidden p-2.5 rounded-full border border-white/20 text-white hover:bg-white/10 transition-all duration-200"
           >
             {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
