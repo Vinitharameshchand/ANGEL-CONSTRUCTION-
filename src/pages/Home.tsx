@@ -181,7 +181,7 @@ const Home = () => {
               }}
               className="label-eyebrow mb-6 text-accent-light"
             >
-              Building Excellence Since 2010
+              Building Excellence Since 1976
             </motion.span>
 
             <motion.h1
@@ -289,7 +289,7 @@ const Home = () => {
                 transition={{ duration: 1, delay: 0.8 }}
                 className="absolute -bottom-10 -right-10 bg-primary p-12 rounded-[2rem] shadow-2xl hidden md:block z-30"
               >
-                <div className="text-accent text-5xl font-heading font-black mb-2"><AnimatedCounter value={15} />+</div>
+                <div className="text-accent text-5xl font-heading font-black mb-2"><AnimatedCounter value={50} />+</div>
                 <div className="text-white/60 uppercase tracking-widest text-[10px] font-bold">Years Experience</div>
               </motion.div>
             </div>
@@ -334,7 +334,7 @@ const Home = () => {
                 className="space-y-6 text-muted text-lg leading-relaxed"
               >
                 <p>
-                  At Angel Construction, we believe that every structure we build is a testament to our commitment to excellence. With over 8 years of dedicated service in Coimbatore and across Tamil Nadu, we have redefined architectural marvels.
+                  At Angel Construction, we believe that every structure we build is a testament to our commitment to excellence. With over 50 years of dedicated service in Coimbatore and across Tamil Nadu, we have redefined architectural marvels.
                 </p>
                 <p>
                   Our team of young, talented minds is dedicated to delivering cutting-edge solutions with a focus on innovation and aesthetic design. We value your dream and work tirelessly to make it a reality within your budget.

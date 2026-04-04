@@ -114,7 +114,7 @@ const About = () => {
               <TextReveal text="About Angel Construction" />
             </h1>
             <p className="text-xl text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
-              We are a prominent construction firm with <AnimatedCounter value={35} />+ years of experience in Coimbatore, Tamil Nadu.
+              We are a prominent construction firm with <AnimatedCounter value={50} />+ years of experience in Coimbatore, Tamil Nadu.
             </p>
           </motion.div>
         </div>
@@ -153,7 +153,7 @@ const About = () => {
                 transition={{ duration: 0.8, delay: 0.8 }}
                 className="absolute -bottom-10 -left-10 bg-accent p-12 rounded-[2rem] shadow-card-hover z-30"
               >
-                <span className="text-white text-5xl font-heading font-black mb-1 block"><AnimatedCounter value={8} />+</span>
+                <span className="text-white text-5xl font-heading font-black mb-1 block"><AnimatedCounter value={50} />+</span>
                 <span className="text-white/80 uppercase tracking-widest text-[10px] font-bold">Years of Trust</span>
               </motion.div>
             </div>

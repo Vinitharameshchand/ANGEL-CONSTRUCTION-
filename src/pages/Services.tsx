@@ -125,7 +125,7 @@ const Services = () => {
               <TextReveal text="Our Expert Services" highlightWords={["Services"]} />
             </h1>
             <p className="text-xl text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
-              Delivering innovation, aesthetics, and reliability across Tamil Nadu for over 8 years.
+              Delivering innovation, aesthetics, and reliability across Tamil Nadu for over 50 years.
             </p>
           </motion.div>
         </div>
