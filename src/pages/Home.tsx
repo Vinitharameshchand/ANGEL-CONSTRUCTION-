@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import heroBg from '../assets/images/frontpagebgimg.png';
+import vd from '../assets/images/aboutvd.mp4';
 import {
   ArrowRight,
   Home as HomeIcon,
@@ -204,7 +205,7 @@ const Home = () => {
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
                 variants={imageReveal}
-                className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl"
+                className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl border-[12px] lg:border-[16px] border-white"
               >
                 {/* Reveal Mask Overlay */}
                 <motion.div
@@ -214,10 +215,13 @@ const Home = () => {
                   viewport={{ once: true }}
                   className="absolute inset-0 bg-accent z-20"
                 />
-                <img
-                  src="https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=1200"
-                  alt="About Angel Construction"
-                  className="w-full h-[600px] object-cover"
+                <video
+                  src={vd}
+                  className="w-full h-[650px] lg:h-[700px] object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                 />
               </motion.div>
               <motion.div
