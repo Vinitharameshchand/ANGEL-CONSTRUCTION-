@@ -114,7 +114,7 @@ const About = () => {
               <TextReveal text="About Angel Construction" />
             </h1>
             <p className="text-xl text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
-              We are a prominent construction firm with <AnimatedCounter value={8} />+ years of experience in Coimbatore, Tamil Nadu.
+              We are a prominent construction firm with <AnimatedCounter value={35} />+ years of experience in Coimbatore, Tamil Nadu.
             </p>
           </motion.div>
         </div>
@@ -174,9 +174,9 @@ const About = () => {
                 viewport={{ once: true }}
                 className="section-title"
               >
-                <TextReveal 
-                  text="Engineering Tomorrow's Excellence Today" 
-                  highlightWords={["Excellence"]} 
+                <TextReveal
+                  text="Engineering Tomorrow's Excellence Today"
+                  highlightWords={["Excellence"]}
                 />
               </motion.h2>
 
