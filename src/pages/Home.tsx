@@ -1,25 +1,16 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import heroBg from '../assets/images/frontpagebgimg.png';
 import vd from '../assets/images/aboutvd.mp4';
-import {
-  ArrowRight,
-  Home as HomeIcon,
-  Sofa,
-  Users,
-  Clock,
-  ShieldCheck,
-  HardHat,
-  MapPin,
-  Phone,
-  Mail,
-  Instagram,
-  Facebook,
-  Twitter,
-  Linkedin,
-  Building2
-} from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { sanityClient, urlFor } from '../lib/sanity';
+
+// Dynamic Icon Component Helper
+const DynamicIcon = ({ name, size = 40 }: { name: string, size?: number }) => {
+  const IconComponent = (LucideIcons as any)[name] || LucideIcons.HelpCircle;
+  return <IconComponent size={size} />;
+};
 
 const Home = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,57 +22,57 @@ const Home = () => {
   const heroY = useTransform(scrollYProgress, [0, 0.2], [0, 200]);
   const heroScale = useTransform(scrollYProgress, [0, 0.2], [1.05, 1.2]);
 
-  const services = [
+  const [services, setServices] = useState<any[]>([
     {
-      icon: <HomeIcon size={40} />,
+      iconName: "Home",
       title: "Residential Construction",
       description: "We build high-quality custom homes, villas, and modern residential complexes with focus on structure and finishing.",
     },
     {
-      icon: <Building2 size={40} />,
+      iconName: "Building2",
       title: "Commercial Projects",
       description: "Expert civil services and commercial construction for offices, startups, retail spaces, and corporate buildings.",
     },
     {
-      icon: <Sofa size={40} />,
+      iconName: "Sofa",
       title: "Interior Design",
       description: "Premium interior design services for residential and corporate infrastructure projects with modern aesthetics.",
     }
-  ];
+  ]);
 
-  const projects = [
+  const [projects, setProjects] = useState<any[]>([
     { title: "Modern Luxury Villa", category: "Residential", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800" },
     { title: "Corporate IT Park", category: "Commercial", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800" },
     { title: "Dream Home", category: "Residential", image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&q=80&w=800" },
     { title: "Commercial Plaza", category: "Commercial", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800" },
     { title: "Minimalist Interior", category: "Interior", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800" },
     { title: "Industrial Infrastructure", category: "Industrial", image: "https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=800" }
-  ];
+  ]);
 
   const whyChooseUs = [
     {
       title: "Expert Team",
       description: "Our team of architects, engineers, and skilled laborers possesses extensive experience in the construction industry.",
-      icon: <Users size={32} />
+      iconName: "Users"
     },
     {
       title: "Quality Craftsmanship",
       description: "We source materials from trusted suppliers, ensuring that your building stands the test of time.",
-      icon: <ShieldCheck size={32} />
+      iconName: "ShieldCheck"
     },
     {
       title: "On-time Delivery",
       description: "Our streamlined processes and efficient project management enable us to deliver projects on schedule.",
-      icon: <Clock size={32} />
+      iconName: "Clock"
     },
     {
       title: "Safe Worksite",
       description: "We maintain the highest safety standards across all our construction sites to ensure a risk-free environment.",
-      icon: <HardHat size={32} />
+      iconName: "HardHat"
     }
   ];
 
-  const testimonials = [
+  const [testimonials, setTestimonials] = useState<any[]>([
     {
       quote: "Angel Construction transformed our vision into a masterpiece. Their professional touch and attention to detail exceeded our expectations.",
       name: "Sarah Johnson",
@@ -97,7 +88,24 @@ const Home = () => {
       name: "Rajesh Kumar",
       role: "Property Developer"
     }
-  ];
+  ]);
+
+  useEffect(() => {
+    sanityClient.fetch(`*[_type == "service"]`).then((data) => {
+      if (data && data.length > 0) setServices(data);
+    });
+    sanityClient.fetch(`*[_type == "project"]`).then((data) => {
+      if (data && data.length > 0) {
+        setProjects(data.map((p: any) => ({
+          ...p,
+          image: p.mainImage ? urlFor(p.mainImage).url() : "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800"
+        })));
+      }
+    });
+    sanityClient.fetch(`*[_type == "testimonial"]`).then((data) => {
+      if (data && data.length > 0) setTestimonials(data);
+    });
+  }, []);
 
   const revealVariants = {
     hidden: { opacity: 0, y: 100 },
@@ -299,7 +307,7 @@ const Home = () => {
               >
                 <Link to="/about" className="inline-block pt-4">
                   <button className="btn-outline flex items-center gap-4">
-                    Learn Our Story <ArrowRight size={18} />
+                    Learn Our Story <LucideIcons.ArrowRight size={18} />
                   </button>
                 </Link>
               </motion.div>
@@ -342,14 +350,14 @@ const Home = () => {
                 className="service-card group h-full flex flex-col"
               >
                 <div className="icon-box mb-8 group-hover:scale-110 transition-transform duration-500">
-                  {service.icon}
+                  <DynamicIcon name={service.iconName} size={40} />
                 </div>
                 <h3 className="text-2xl font-heading font-bold mb-4">{service.title}</h3>
                 <p className="text-muted leading-relaxed mb-8 flex-grow">
                   {service.description}
                 </p>
                 <Link to="/services" className="text-accent font-bold text-sm tracking-widest uppercase flex items-center gap-2 group-hover:gap-4 transition-all">
-                  Full Details <ArrowRight size={16} />
+                  Full Details <LucideIcons.ArrowRight size={16} />
                 </Link>
                 <div className="absolute top-0 right-0 p-8 text-accent/5 group-hover:text-accent/10 transition-colors pointer-events-none">
                   <span className="text-8xl font-heading font-black">0{idx + 1}</span>
@@ -465,7 +473,7 @@ const Home = () => {
                     className="flex gap-6 group"
                   >
                     <div className="icon-box-dark group-hover:bg-accent transition-colors">
-                      {item.icon}
+                      <DynamicIcon name={item.iconName} size={32} />
                     </div>
                     <div>
                       <h4 className="text-xl font-heading font-bold mb-2">{item.title}</h4>
@@ -629,9 +637,9 @@ const Home = () => {
               </motion.h3>
               <div className="space-y-8 px-4">
                 {[
-                  { icon: <Phone size={20} />, label: "Call Us Anywhere", val: "+91 93600 21210" },
-                  { icon: <Mail size={20} />, label: "Email Us Directly", val: "arunpradishyr09@gmail.com" },
-                  { icon: <MapPin size={20} />, label: "Our Studio Location", val: "Gandhipuram, Coimbatore - 641012" }
+                  { icon: <LucideIcons.Phone size={20} />, label: "Call Us Anywhere", val: "+91 93600 21210" },
+                  { icon: <LucideIcons.Mail size={20} />, label: "Email Us Directly", val: "arunpradishyr09@gmail.com" },
+                  { icon: <LucideIcons.MapPin size={20} />, label: "Our Studio Location", val: "Gandhipuram, Coimbatore - 641012" }
                 ].map((item, i) => (
                   <motion.div
                     key={i}
@@ -651,7 +659,7 @@ const Home = () => {
               </div>
 
               <div className="flex gap-4 pt-4 px-4 overflow-hidden">
-                {[Instagram, Facebook, Twitter, Linkedin].map((Icon, i) => (
+                {[LucideIcons.Instagram, LucideIcons.Facebook, LucideIcons.Twitter, LucideIcons.Linkedin].map((Icon, i) => (
                   <motion.div
                     key={i}
                     initial={{ y: 50, opacity: 0 }}

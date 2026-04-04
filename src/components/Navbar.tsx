@@ -38,20 +38,6 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Top info bar */}
-      <div className={`fixed top-0 left-0 right-0 z-[40] transition-all duration-500 ${!isScrolled && isHeroPage ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full'}`}>
-        <div className="hidden lg:block w-full bg-primary text-white/60 text-[11px] font-sans tracking-wider py-2 px-8 shadow-md">
-          <div className="max-w-7xl mx-auto flex justify-end items-center gap-6">
-            <a href="tel:+919360021210" className="flex items-center gap-2 hover:text-accent transition-colors">
-              <Phone size={12} />
-              <span>+91 93600 21210</span>
-            </a>
-            <span className="text-white/20">|</span>
-            <span>Mon – Sat: 9:00 AM – 7:00 PM</span>
-          </div>
-        </div>
-      </div>
-
       <nav
         className={`fixed left-4 right-4 lg:left-1/2 lg:-translate-x-1/2 lg:w-full lg:max-w-6xl z-50 transition-all duration-500 rounded-[3rem] border border-white/10 ${
           isScrolled
