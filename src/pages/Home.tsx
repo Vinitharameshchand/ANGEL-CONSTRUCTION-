@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import heroBg from '../assets/images/frontpagebgimg.png';
 import vd from '../assets/images/aboutvd.mp4';
+import qualityVd from '../assets/images/Constructionqulity .mp4';
 import * as LucideIcons from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { sanityClient, urlFor } from '../lib/sanity';
@@ -532,32 +533,15 @@ const Home = () => {
                   viewport={{ once: true }}
                   className="absolute inset-0 bg-accent z-20"
                 />
-                <img
-                  src="https://images.unsplash.com/photo-1503387762-592dee58c460?auto=format&fit=crop&q=80&w=1200"
-                  alt="Construction Quality"
-                  className="w-full h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                <video
+                  src={qualityVd}
+                  className="w-full h-[600px] object-cover"
+                  autoPlay
+                  loop
+                  playsInline
+                  controls
                 />
               </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 1, type: "spring", bounce: 0.5 }}
-                >
-                  <motion.div
-                    animate={{ y: [0, -15, 0] }}
-                    transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 md:w-40 md:h-40 bg-accent/90 backdrop-blur-sm rounded-full flex items-center justify-center cursor-pointer z-30 shadow-[0_0_50px_rgba(201,168,76,0.4)]"
-                  >
-                    <motion.div 
-                      animate={{ scale: [1, 1.1, 1] }}
-                      transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                      className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center pl-1 shadow-2xl"
-                    >
-                      <div className="w-0 h-0 border-t-[8px] md:border-t-[10px] border-t-transparent border-l-[14px] md:border-l-[18px] border-l-primary border-b-[8px] md:border-b-[10px] border-b-transparent" />
-                    </motion.div>
-                  </motion.div>
-                </motion.div>
             </div>
           </div>
         </div>
