@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView, useMotionValue, animate } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import heroBg from '../assets/images/frontpagebgimg.png';
 import vd from '../assets/images/aboutvd.mp4';
@@ -6,6 +6,25 @@ import qualityVd from '../assets/images/Constructionqulity .mp4';
 import * as LucideIcons from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { sanityClient, urlFor } from '../lib/sanity';
+
+// Animated Counter Component
+const AnimatedCounter = ({ value, duration = 2 }: { value: number, duration?: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest: number) => Math.round(latest));
+
+  useEffect(() => {
+    if (isInView) {
+      animate(count, value, {
+        duration: duration,
+        ease: "easeOut",
+      });
+    }
+  }, [isInView, count, value, duration]);
+
+  return <motion.span ref={ref}>{rounded}</motion.span>;
+};
 
 // Dynamic Icon Component Helper
 const DynamicIcon = ({ name, size = 40 }: { name: string, size?: number }) => {
@@ -160,15 +179,29 @@ const Home = () => {
             </motion.span>
 
             <motion.h1
-              variants={revealVariants}
-              className="text-display text-white font-heading font-black mb-8"
+              className="text-display text-white font-heading font-black mb-8 overflow-hidden"
             >
-              Building Your <span className="text-accent underline decoration-accent/20 underline-offset-8">Vision</span> <br /> Into Reality
+              {"Building Your Vision Into Reality".split(" ").map((word, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: i * 0.1, 
+                    ease: [0.33, 1, 0.68, 1] 
+                  }}
+                  className={`inline-block mr-4 ${word === "Vision" ? "text-accent underline decoration-accent/20 underline-offset-8" : ""}`}
+                >
+                  {word}
+                </motion.span>
+              ))}
             </motion.h1>
 
             <motion.p
-              variants={revealVariants}
-              transition={{ delay: 0.1 }}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.8, duration: 1 }}
               className="text-xl md:text-2xl text-white/80 mb-12 leading-relaxed font-light max-w-2xl"
             >
               Angel Construction. We are glad to be unite with you in deal of construction. Expert civil services for every milestone.
@@ -250,7 +283,7 @@ const Home = () => {
                 transition={{ duration: 1, delay: 0.8 }}
                 className="absolute -bottom-10 -right-10 bg-primary p-12 rounded-[2rem] shadow-2xl hidden md:block z-30"
               >
-                <div className="text-accent text-5xl font-heading font-black mb-2">15+</div>
+                <div className="text-accent text-5xl font-heading font-black mb-2"><AnimatedCounter value={15} />+</div>
                 <div className="text-white/60 uppercase tracking-widest text-[10px] font-bold">Years Experience</div>
               </motion.div>
             </div>
@@ -269,10 +302,21 @@ const Home = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                variants={revealVariants}
-                className="section-title"
+                className="section-title overflow-hidden"
               >
-                Beyond Construction, <br /> We Build <span className="text-accent">Trust</span>
+                {"Beyond Construction, We Build Trust".split(" ").map((word, i) => (
+                  <motion.span
+                    key={i}
+                    variants={{
+                      hidden: { y: "100%" },
+                      visible: { y: 0 }
+                    }}
+                    transition={{ duration: 0.8, delay: i * 0.05, ease: [0.33, 1, 0.68, 1] }}
+                    className={`inline-block mr-3 ${word === "Trust" ? "text-accent" : ""}`}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
               </motion.h2>
 
               <motion.div
@@ -310,7 +354,7 @@ const Home = () => {
                     whileHover={{ scale: 1.05, color: '#C9A84C' }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    3000+
+                    <AnimatedCounter value={3000} />+
                   </motion.h4>
                   <p className="text-sm font-bold text-muted uppercase tracking-widest">Project Completed</p>
                 </motion.div>
@@ -320,7 +364,7 @@ const Home = () => {
                     whileHover={{ scale: 1.05, color: '#C9A84C' }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    220+
+                    <AnimatedCounter value={220} />+
                   </motion.h4>
                   <p className="text-sm font-bold text-muted uppercase tracking-widest">Happy Clients</p>
                 </motion.div>
@@ -360,10 +404,21 @@ const Home = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              variants={revealVariants}
-              className="section-title"
+              className="section-title overflow-hidden"
             >
-              Comprehensive Expert <span className="text-accent">Services</span>
+              {"Comprehensive Expert Services".split(" ").map((word, i) => (
+                <motion.span
+                  key={i}
+                  variants={{
+                    hidden: { y: "100%", opacity: 0 },
+                    visible: { y: 0, opacity: 1 }
+                  }}
+                  transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
+                  className={`inline-block mr-3 ${word === "Services" ? "text-accent" : ""}`}
+                >
+                  {word}
+                </motion.span>
+              ))}
             </motion.h2>
           </div>
 
@@ -388,7 +443,7 @@ const Home = () => {
                   Full Details <LucideIcons.ArrowRight size={16} />
                 </Link>
                 <div className="absolute top-0 right-0 p-8 text-accent/5 group-hover:text-accent/10 transition-colors pointer-events-none">
-                  <span className="text-8xl font-heading font-black">0{idx + 1}</span>
+                  <span className="text-8xl font-heading font-black">0<AnimatedCounter value={idx + 1} /></span>
                 </div>
               </motion.div>
             ))}
@@ -506,9 +561,12 @@ const Home = () => {
                     transition={{ delay: idx * 0.1, duration: 1 }}
                     className="flex gap-6 group"
                   >
-                    <div className="icon-box-dark group-hover:bg-accent transition-colors shrink-0">
+                    <motion.div 
+                      whileHover={{ scale: 1.2, rotate: [0, -10, 10, 0] }}
+                      className="icon-box-dark group-hover:bg-accent transition-colors shrink-0"
+                    >
                       <DynamicIcon name={item.iconName} size={32} />
-                    </div>
+                    </motion.div>
                     <div className="pt-2">
                       <h4 className="text-xl font-heading font-bold mb-2 text-white">{item.title}</h4>
                       <p className="text-white/60 text-sm md:text-base font-light leading-relaxed">{item.description}</p>

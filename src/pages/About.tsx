@@ -1,8 +1,27 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useScroll, useTransform, useInView, useMotionValue, animate } from 'framer-motion';
+import { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Target, Eye, ShieldCheck, Award, Users2, Clock, CheckCircle2 } from 'lucide-react';
 import vm from "../assets/images/mission&vision.png";
+
+// Animated Counter Component
+const AnimatedCounter = ({ value, duration = 2 }: { value: number, duration?: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest: number) => Math.round(latest));
+
+  useEffect(() => {
+    if (isInView) {
+      animate(count, value, {
+        duration: duration,
+        ease: "easeOut",
+      });
+    }
+  }, [isInView, count, value, duration]);
+
+  return <motion.span ref={ref}>{rounded}</motion.span>;
+};
 
 const About = () => {
   // Reference to the main wrapper div, used to track scroll position
@@ -92,7 +111,7 @@ const About = () => {
             </motion.span>
             <h1 className="text-display text-white font-heading font-black mb-8 leading-tight">About Angel <br /> Construction</h1>
             <p className="text-xl text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
-              We are a prominent construction firm with 8+ years of experience in Coimbatore, Tamil Nadu.
+              We are a prominent construction firm with <AnimatedCounter value={8} />+ years of experience in Coimbatore, Tamil Nadu.
             </p>
           </motion.div>
         </div>
@@ -131,7 +150,7 @@ const About = () => {
                 transition={{ duration: 0.8, delay: 0.8 }}
                 className="absolute -bottom-10 -left-10 bg-accent p-12 rounded-[2rem] shadow-card-hover z-30"
               >
-                <span className="text-white text-5xl font-heading font-black mb-1 block">8+</span>
+                <span className="text-white text-5xl font-heading font-black mb-1 block"><AnimatedCounter value={8} />+</span>
                 <span className="text-white/80 uppercase tracking-widest text-[10px] font-bold">Years of Trust</span>
               </motion.div>
             </div>
